@@ -253,7 +253,7 @@ body {
   background-color: var(--maincolor);
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 800px) {
   .prompt {
     width: 90%;
   }
