@@ -1,5 +1,5 @@
-import {getCookie, setCookie, eraseCookie} from '../../script/main.js';
-import {app, db,setDoc , collection, getDocs, addDoc, query,limit,where ,deleteDoc,doc,updateDoc,getDoc} from '../../script/app.js';
+import {getCookie, setCookie, eraseCookie} from './main.js';
+import {app, db,setDoc , collection, getDocs, addDoc, query,limit,where ,deleteDoc,doc,updateDoc,getDoc} from './app.js';
 const menuBar =document.querySelector("header .links .menuBar")
 const menu =document.querySelector("header .links .menu")
 const menuControle =document.querySelector("header .links .menu .controle")
@@ -355,3 +355,4 @@ window.addEventListener("load",async()=>{
         }
 })
 }
+
