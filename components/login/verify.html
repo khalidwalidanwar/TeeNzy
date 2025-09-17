@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../style/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <title>TeeNzy - Verify</title>
+</head>
+<body>
+
+    <div class="container" dir="rtl">
+        <div class="logo">
+            <h1>Tee<span>N</span>zy</h1>
+            <!-- <img src="./sources/0.png" alt="TeeNzy"> -->
+        </div>
+        <div class="form-container">
+            <form id="verifyForm" method="post" action="#">
+                <div >
+                    <h2>أدخل الرمز</h2>
+                    <label for="text" class="form-label">أدخل رمز التحقق المرسل الي <span></span></label>
+                </div>
+                <input type="text" class="form-control mb-3" id="code" placeholder="رمز التحقق" required>
+                <button type="submit" class="btn btn-success w-100">تأكيد</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import {getCookie, setCookie, eraseCookie} from '../../script/main.js';
+        import {app, db, collection, getDocs, addDoc, query,limit,where ,deleteDoc,doc,updateDoc,getDoc} from '../../script/app.js';
+        if(getCookie("userId") && !getCookie('isVerified')){
+            document.querySelector('#verifyForm label span').innerText = getCookie('emailToVirify');
+        }else{
+            if(getCookie('isVerified')){
+                window.location.href = '../../';
+            }else{
+                window.location.href = './';
+            }
+        }
+        document.getElementById('verifyForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const code = document.getElementById('code').value;
+            const userId = getCookie("userId");
+            getDoc(doc(db, "users", userId)).then((userDoc) => {
+                if (userDoc.exists()) {
+                    const userData = userDoc.data();
+                    if(userData.verificationCode === code){
+                        const codeGenerationTime = userData.createdAt.toDate();
+                        const currentTime = new Date();
+                        const timeDifference = (currentTime - codeGenerationTime) / (1000 * 60); // in minutes
+                        if (timeDifference <= 15) {
+                            // Code is valid
+                            var userAddresses = userData.addresses || {};
+                            updateDoc(doc(db, "users", userId), {
+                                verificationCode: "",
+                                isVerified: true,
+                                addresses:userAddresses,
+                            }).then(() => {
+                                eraseCookie("emailToVirify");
+                                setCookie('isVerified', 'true', 60*24*365); // 1 year
+                                alert('تم التحقق بنجاح! جاري تحويلك إلى الصفحة الرئيسية.');
+                                window.location.href = '../../';
+                            }).catch((error) => {
+                                console.error("Error updating document: ", error);
+                            });
+                        } else {
+                            alert('انتهت صلاحية رمز التحقق. يرجى طلب رمز جديد.');
+                        }
+                    } else {
+                        alert('رمز التحقق غير صحيح. يرجى المحاولة مرة أخرى.');
+                    }
+                } else {
+                    alert('المستخدم غير موجود. يرجى تسجيل الدخول مرة أخرى.');
+                    eraseCookie("userId");
+                    eraseCookie("emailToVirify");
+                    window.location.href = './';
+                }
+            }).catch((error) => {
+                console.error("Error getting document: ", error);
+            });
+        });
+    </script>
+</body>
+</html>
