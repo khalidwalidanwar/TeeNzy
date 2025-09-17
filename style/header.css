@@ -1,0 +1,100 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.7137254902);
+  box-shadow: 0px 2px 13px 1px var(--mainFontcolor);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 30px;
+}
+header .info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+header .info button {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  transition: 0.8s;
+  cursor: pointer;
+}
+header .info button:hover {
+  background-color: var(--maincolor);
+  color: #fff;
+  scale: 1.1;
+}
+header .logo a h1 {
+  text-align: center;
+  color: var(--maincolor);
+  font-family: "Satisfy", cursive;
+  font-weight: bold;
+}
+header .logo a h1 span {
+  font-family: sans-serif;
+  color: var(--exstracolor);
+}
+header .logo img {
+  width: 120px;
+}
+header .links .menuBar {
+  display: none;
+  font-size: 23px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: #000;
+}
+header .links .menuBar:hover {
+  color: var(--maincolor);
+}
+header .links .menu {
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  transition: 0.8s;
+}
+header .links .menu .controle {
+  display: none;
+}
+header .links .menu ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+header .links .menu ul li {
+  cursor: pointer;
+  transition: 0.5s;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.473);
+  padding-top: 8px;
+  padding-bottom: 5px;
+}
+header .links .menu ul li a {
+  color: #000;
+}
+header .links .menu ul li:hover {
+  scale: 1.1;
+}
+header .links .menu ul li:hover a {
+  color: #777;
+}
+header .links .menu ul .madeYourT {
+  border-radius: 10px;
+}
+header .links .menu ul .madeYourT a {
+  font-weight: 700;
+  font-size: large;
+  color: var(--exstracolor);
+}
+header .links .menu ul .madeYourT a:hover {
+  color: var(--maincolor);
+}/*# sourceMappingURL=header.css.map */

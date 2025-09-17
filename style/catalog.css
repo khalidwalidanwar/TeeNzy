@@ -1,4 +1,3 @@
-@charset "UTF-8";
 :root {
   --mainbgcolor: #fff;
   --primarybgcolor: #efeff2;
@@ -246,195 +245,61 @@ header .links .menu ul .madeYourT a:hover {
   color: var(--maincolor);
 }
 
-section {
-  overflow-x: hidden;
-  min-height: 600px;
-}
-section .mainTitle {
-  transition: 0.5s;
+body {
+  background-color: var(--maincolor);
   position: relative;
-  top: 100px;
-  opacity: 0.1;
-  text-align: center;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-section .mainTitle h1 {
-  transition: 0.5s;
-  padding: 10px 20px;
-  border-radius: 5px;
-  position: relative;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-section .mainTitle h1::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: -20px;
-  transform: translate(0, -50%);
-  background-color: var(--maincolor);
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-}
-section .mainTitle h1::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -20px;
-  transform: translate(0, -50%);
-  background-color: var(--maincolor);
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-}
-section .mainTitle h1:hover {
-  background-color: var(--maincolor);
-  color: #fff;
-}
-section .mainTitle h1:hover::before {
-  transform: translate(-150%, -50%);
-}
-section .mainTitle h1:hover::after {
-  transform: translate(150%, -50%);
-}
-section .mainTitle.visible {
-  top: 0;
-  opacity: 1;
 }
 
-section.trend {
-  position: relative;
-  height: 100vh;
-}
-section.trend #carouselExampleIndicators {
-  height: 100%;
-}
-section.trend #carouselExampleIndicators .carousel-indicators {
-  z-index: 4;
-}
-section.trend #carouselExampleIndicators .carousel-inner {
-  height: 100%;
-}
-section.trend #carouselExampleIndicators .carousel-inner .carousel-item {
-  height: 100%;
-}
-section.trend #carouselExampleIndicators .carousel-inner .carousel-item img {
-  height: 100%;
-}
-section.trend .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3098039216);
-  z-index: 3;
-}
-section.trend .overlay button {
-  position: absolute;
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 15px 30px;
-  font-size: 18px;
-  border-radius: 10px;
-  border: 2px solid #fff;
-  background-color: transparent;
-  color: #fff;
-  cursor: pointer;
-  transition: 0.5s;
-}
-section.trend .overlay button:hover {
-  background-color: var(--maincolor);
-  border-color: var(--maincolor);
-  color: #fff;
-  scale: 1.1;
+header {
+  position: static;
 }
 
-section.AI {
-  overflow: hidden;
-  position: relative;
-  /* background-image: url(../img/aiBackground.jpg);
-  background-size: cover;
-  background-color: #013a61; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 50px 30px;
-  color: #fff;
+.container {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
-section.AI .prompt {
-  margin: 30px 0;
-  min-width: 70%;
-  text-align: center;
-  font-size: 14px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-}
-section.AI .prompt textarea {
-  text-align: right;
-}
-section.AI .prompt p {
-  margin-top: 10px;
-  font-size: 17px;
-  font-weight: bold;
-}
-section.AI .overlay {
-  overflow: hidden;
-}
-section.AI .overlay .ai-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  z-index: -1;
-  filter: brightness(0.5); /* يخلي النص أوضح */
-}
-
-section.collection {
+.container .catalog {
   background-color: var(--primarybgcolor);
-  padding-top: 40px;
-  padding-bottom: 40px;
-  /* Product Grid */
-  /* Product Card */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px 30px;
 }
-section.collection .col-md-6 {
-  width: 100%;
-}
-section.collection .row {
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: 40px;
-}
-section.collection .product-grid.visible {
-  right: 0 !important;
-}
-section.collection .product-grid {
+.container .catalog .nav {
   display: flex;
-  flex-wrap: nowrap;
+  justify-content: center;
+  flex-wrap: wrap;
+  background: #efeff2;
+  padding: 20px 0;
+  gap: 20px;
+  border-radius: 20px;
+  margin: 10px 30px;
+}
+.container .catalog .nav button {
+  background: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.container .catalog .nav button.active {
+  background-color: #000;
+  color: #fff;
+}
+.container .catalog .product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
   border-radius: 20px;
   margin: 0 30px;
   min-height: 320px;
   position: relative;
-  right: -100%;
   transition: 0.5s;
-  overflow-x: scroll;
   padding: 10px 0px;
 }
-section.collection .card {
+.container .catalog .product-grid .card {
   min-width: 200px;
   max-width: 200px;
   background: white;
@@ -445,14 +310,34 @@ section.collection .card {
   transition: 0.3s ease;
   overflow: hidden;
 }
-section.collection .card:hover .action {
+.container .catalog .product-grid .card:hover .action {
   bottom: 0;
 }
-section.collection .card img {
+.container .catalog .product-grid .card.soldOutCard {
+  opacity: 0.6;
+  pointer-events: none;
+  filter: grayscale(1);
+  position: relative;
+}
+.container .catalog .product-grid .card.soldOutCard::after {
+  content: "Sold out";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--primarybgcolor);
+  color: #000;
+  padding: 10px 20px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+.container .catalog .product-grid .card img {
   width: 100%;
   display: block;
 }
-section.collection .label {
+.container .catalog .product-grid .label {
   position: absolute;
   top: 12px;
   left: 12px;
@@ -463,10 +348,10 @@ section.collection .label {
   font-size: 12px;
   font-weight: bold;
 }
-section.collection .label.new {
-  background-color: green;
+.container .catalog .product-grid .label.new {
+  background-color: var(--maincolor);
 }
-section.collection .favorite {
+.container .catalog .product-grid .favorite {
   position: absolute;
   top: 12px;
   right: 12px;
@@ -477,14 +362,14 @@ section.collection .favorite {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   transition: 0.2s;
 }
-section.collection .favorite.active {
+.container .catalog .product-grid .favorite.active {
   color: red;
 }
-section.collection .product-info {
+.container .catalog .product-grid .product-info {
   padding: 15px 20px;
   height: 100%;
 }
-section.collection .product-title {
+.container .catalog .product-grid .product-title {
   font-size: 16px;
   font-weight: 600;
   text-align: center;
@@ -493,18 +378,18 @@ section.collection .product-title {
   align-items: center;
   height: 100%;
 }
-section.collection .rating {
+.container .catalog .product-grid .rating {
   display: flex;
   align-items: center;
   font-size: 14px;
   color: #888;
   margin-bottom: 8px;
 }
-section.collection .stars {
+.container .catalog .product-grid .stars {
   color: #ffc107;
   margin-right: 4px;
 }
-section.collection .action {
+.container .catalog .product-grid .action {
   position: absolute;
   bottom: -100%;
   left: 0;
@@ -516,11 +401,11 @@ section.collection .action {
   padding: 25px 20px;
   transition: 0.5s;
 }
-section.collection .price {
+.container .catalog .product-grid .price {
   font-size: 18px;
   font-weight: bold;
 }
-section.collection .lastPrice {
+.container .catalog .product-grid .lastPrice {
   font-size: 15px;
   text-decoration: line-through;
   position: relative;
@@ -528,7 +413,7 @@ section.collection .lastPrice {
   color: #888;
   top: 20px;
 }
-section.collection .add-to-cart {
+.container .catalog .product-grid .add-to-cart {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
@@ -542,78 +427,14 @@ section.collection .add-to-cart {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-section.collection .add-to-cart:hover {
+.container .catalog .product-grid .add-to-cart:hover {
   background-color: #f0f0f0;
 }
-section.collection .cart-icon {
+.container .catalog .product-grid .cart-icon {
   font-size: 16px;
 }
-section.collection .hidden {
+.container .catalog .product-grid .hidden {
   display: none !important;
-}
-
-section.summerCollections {
-  background-color: var(--mainbgcolor);
-}
-
-section.analyse {
-  background-color: var(--primarybgcolor);
-  padding: 40px 0;
-  min-height: -moz-fit-content;
-  min-height: fit-content;
-}
-section.analyse .container.visible {
-  left: 0% !important;
-}
-section.analyse .container {
-  transition: 0.7s;
-  position: relative !important;
-  left: -100% !important;
-  height: 100%;
-}
-section.analyse .container .row {
-  align-items: center;
-  flex-direction: column;
-}
-section.analyse .container .head .mainTitle {
-  top: 0 !important;
-  opacity: 1 !important;
-}
-section.analyse .container .head p {
-  text-align: center;
-  color: #555;
-}
-section.analyse .container .card {
-  text-align: right;
-}
-section.analyse .container .reviews {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-section.analyse .container .reviews input {
-  width: 70%;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  outline: none;
-  text-align: right;
-}
-section.analyse .container .reviews button {
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
-  background-color: var(--maincolor);
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.5s;
-}
-section.analyse .container .reviews button:hover {
-  background-color: var(--exstracolor);
-  scale: 1.1;
 }
 
 .productPreview {
@@ -864,4 +685,8 @@ section.analyse .container .reviews button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-}/*# sourceMappingURL=home.css.map */
+}
+
+.footer {
+  background-color: var(--exstracolor);
+}/*# sourceMappingURL=catalog.css.map */

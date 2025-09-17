@@ -1,0 +1,86 @@
+.footer {
+  min-height: auto;
+  background-color: var(--maincolor);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.footer .row.first {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 50px;
+  padding: 40px 0;
+}
+.footer .row.first .info {
+  display: grid;
+  gap: 10px;
+  letter-spacing: 2px;
+}
+.footer .row.first .info .logoContainer {
+  overflow: hidden;
+  text-align: center;
+}
+.footer .row.first .info .logoContainer img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+.footer .row.first .info .social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.footer .row.first .info .social a {
+  color: #fff;
+  font-size: 20px;
+  transition: 0.5s;
+}
+.footer .row.first .info .social a:hover {
+  color: var(--mainFontcolor);
+  scale: 1.2;
+}
+.footer .row.first .fast-links {
+  display: grid;
+  gap: 10px;
+}
+.footer .row.first .fast-links ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer .row.first .fast-links ul li a {
+  color: #fff;
+  transition: 0.5s;
+}
+.footer .row.first .fast-links ul li a:hover {
+  color: var(--mainFontcolor);
+  scale: 1.1;
+}
+.footer .row.first .contact {
+  display: grid;
+  gap: 10px;
+}
+.footer .row.first .contact .contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer .row.first .contact .contact-item i {
+  font-size: 20px;
+}
+.footer .endless {
+  border-top: 1px solid #fff;
+  padding: 10px 0;
+  flex-wrap: wrap;
+}
+.footer .endless .col-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}/*# sourceMappingURL=footer.css.map */

@@ -1,0 +1,98 @@
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    background-color: #ffffffb6;
+    box-shadow: 0px 2px 13px 1px var(--mainFontcolor);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px 30px;
+    .info{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        button{
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #000;
+            transition: 0.8s;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: var(--maincolor);
+            color: #fff;
+            scale: 1.1;
+        }
+    }
+    .logo a h1{
+        text-align: center;
+        color: var(--maincolor);
+        font-family: 'Satisfy', cursive;
+        font-weight: bold;
+        span{
+            font-family: sans-serif;
+            color: var(--exstracolor);
+        }
+    }
+    .logo img{
+        width: 120px;
+    }
+    .links{
+        .menuBar{
+            display: none;
+            font-size: 23px;
+            cursor: pointer;
+            transition: 0.3s;
+            color: #000;
+            &:hover{
+                color: var(--maincolor);
+            }
+        }
+        .menu{
+            z-index: 4;
+            display: flex;
+            align-items: center;
+            .controle{
+                display: none;
+            }
+            ul{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 20px;
+                li{
+                    a{color: #000;}
+                    cursor: pointer;
+                    transition: 0.5s;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.473);
+                    padding-top: 8px;
+                    padding-bottom: 5px;
+                    &:hover{
+                        scale: 1.1;
+                        a{color: #777;}
+                    }
+                }
+                .madeYourT{
+                    border-radius: 10px;
+                        a{
+                            font-weight: 700;
+                            font-size: large;
+                            color: var(--exstracolor);
+                            &:hover{
+                                color: var(--maincolor);
+                            }
+                        }
+                }
+            }
+            transition: 0.8s;
+        }
+    }
+}

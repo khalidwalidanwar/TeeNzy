@@ -1,0 +1,88 @@
+.footer{
+    min-height: auto;
+    background-color: var(--maincolor);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    .row.first{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 50px;
+        padding: 40px 0;
+        .info{
+            display: grid;
+            gap: 10px;
+            letter-spacing: 2px;
+            .logoContainer{
+                overflow: hidden;
+                text-align: center;
+                img{
+                    border-radius: 50%;
+                    width: 100px;
+                    height: 100px;
+                }
+            }
+            .social{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 15px;
+                a{
+                    color: #fff;
+                    font-size: 20px;
+                    transition: 0.5s;
+                    &:hover{
+                        color: var(--mainFontcolor);
+                        scale: 1.2;
+                    }
+                }
+            }
+        }
+        .fast-links{
+            display: grid;
+            gap: 10px;
+            ul{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                li{
+                    a{
+                        color: #fff;
+                        transition: 0.5s;
+                        &:hover{
+                            color: var(--mainFontcolor);
+                            scale: 1.1;
+                        }
+                    }
+                }
+            }
+        }
+        .contact{
+            display: grid;
+            gap: 10px;
+            .contact-item{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                gap: 10px;
+                i{
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+    .endless{
+        border-top: 1px solid #fff;
+        padding: 10px 0;
+        flex-wrap: wrap;
+        .col-2{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

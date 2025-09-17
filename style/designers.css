@@ -1,0 +1,149 @@
+:root {
+  --mainbgcolor: #fff;
+  --primarybgcolor: #efeff2;
+  --mainFontcolor: #c0c0c0;
+  --maincolor: #198754;
+  --exstracolor:#178f57;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+ul {
+  list-style: none;
+}
+
+textarea {
+  resize: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+body {
+  background-color: var(--mainbgcolor);
+  overflow-x: hidden;
+}
+
+@media only screen and (max-width: 800px) {
+  header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  header .links .menuBar {
+    display: block !important;
+  }
+  header .info {
+    position: absolute;
+    top: 11px;
+    left: -100%;
+    z-index: 5;
+    transition: 0.7s;
+  }
+  header .menu {
+    height: 100vh;
+    /* width: 35%; */
+    background-color: rgba(221, 221, 221, 0.9725490196);
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    padding: 10px 20px;
+  }
+  header .menu .controle {
+    display: block !important;
+    text-align: left;
+    width: 100%;
+    margin: 5px 0px 20px 0;
+  }
+  header .menu .controle i {
+    cursor: pointer;
+  }
+  header .menu ul {
+    border-top: 1px solid rgba(0, 0, 0, 0.473);
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    padding: 0;
+  }
+  header .menu ul .madeYourT {
+    margin-top: 20px;
+  }
+  header .menu ul .madeYourT button {
+    margin-right: 0px !important;
+    border-radius: 10px;
+  }
+  header .menu ul li {
+    transition: 0.5s;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.473);
+    width: 100%;
+    padding: 8px 20px 5px 20px;
+    width: 100%;
+    text-align: right;
+  }
+  header .menu ul li a {
+    color: #000;
+  }
+  header .menu ul li:hover {
+    scale: 1.1;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .endless {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .endless p {
+    text-align: center !important;
+  }
+}
+@media only screen and (max-width: 500px) {
+  section.AI .prompt {
+    min-width: 90%;
+  }
+  section.collection .product-grid {
+    min-height: 250px;
+  }
+  section.collection .card {
+    min-width: 150px;
+    max-width: 150px;
+  }
+  .product-info .product-title {
+    height: auto !important;
+  }
+  .product-info .action {
+    position: relative !important;
+    bottom: 0 !important;
+    padding: 0 !important;
+  }
+  .product-info .lastPrice {
+    position: absolute !important;
+    left: 0 !important;
+    top: 30px !important;
+  }
+}
+.mainOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3098039216);
+  display: none;
+  z-index: 3;
+}
+
+body {
+  background-color: #000;
+}/*# sourceMappingURL=designers.css.map */
