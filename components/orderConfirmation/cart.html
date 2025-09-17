@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    if(!window.localStorage.cart && Object.values(JSON.parse(window.localStorage.cart)).length <= 0){
+      window.location.href='../../../';
+      die("Not Found");
+    }
+  </script>
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../style/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <title>TeeNzy - cart</title>
+</head>
+<body>
+    <header>
+        <div class="info">
+          <button class="userProfile"><i class="fa-solid fa-user"></i></button>
+        </div>
+        <div class="links">
+            <div class="menuBar"><i class="fa-solid fa-bars"></i></div>
+            <div class="menu">
+                <div class="controle"><i class="fa-solid fa-x"></i></div>
+                <ul>
+                    <li class="madeYourT"><a href="../designers">صمم تيشيرتك</a></li>
+                    <li><a href="../catalog/">كل المنتجات</a></li>
+                    <li><a href="../../index.html#analyse">أراء العملاء</a></li>
+                    <li><a href="../../index.html#footer">تواصل معنا</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="logo"><a href="../../">
+            <h1>Tee<span>N</span>zy</h1>
+            <!-- <img src="./sources/logo.png" alt="TeeNzy"> -->
+        </a></div>
+    </header>
+
+
+    <div class="container cartContainer">
+        <div class="left">
+          <div class="order-summarise">
+            <h2 class="summary-title">ملخص الطلب</h2>
+            <p>الرجاء مراجعة تفاصيل طلبك قبل المتابعة إلى الدفع.</p>
+            <ul class="summary-details">
+              <li>المنتجات: <span class="totalOfProducts"> <span>ج.م</span></span> </li>
+              <li>الشحن و التوصيل: <span class="deliveryFees"> <span>ج.م</span></span> </li>
+              <li>الاجمالي: <span class="subTotalPrice"> <span>ج.م</span></span> </li>
+              <li class="discount">الخصم: <span class="taxes">----<span>ج.م</span></span> </li>
+              <li class="totalPriceLi">احمالي الطلب: <span class="totalPriceValue"></span> ج.م</li>
+            </ul>
+            <div class="discountCobone">
+              <input type="text" class="form-control" placeholder="كود الخصم">
+              <button class="btn btn-success applyBtn">تطبيق</button>
+            </div>
+            <button class="btn btn-success payment-btn">الذهاب للدفع</button>
+            <button class="btn btn-success checkout-btn d-none">تأكيد الطلب</button>
+            <p class="policy">
+              من خلال النقر على "الذهاب للدفع" أو "تأكيد الطلب"، فإنك توافق على <a href="../policy/policy.html">سياسة الخصوصية</a> و <a href="../policy/refunInfo.html">سياسة الاستبدال و الاسترجاع</a> و <a href="../policy/shippingInfo.html">خدمة التوصيل</a> الخاصة بنا.
+            </p>
+          </div>
+        </div>
+        <div class="right">
+          <div class="userInfo">
+            <h2>معلومات التوصيل</h2>
+            <div class="username"></div>
+            <div class="email"></div>
+            <div class="deliveryInfo">
+              <div class="chooseLocation">
+                <p>عنوان التوصيل</p>
+                <select class="form-contrrol">
+                </select>
+              </div>
+              <div class="locationInfo">
+                <p> العنوان : <span class="loc"></span></p>
+                <p>رقم الهاتف : <span class="num"></span></p>
+              </div>
+            </div>
+          </div>
+          <div class="orderInfo">
+            <h2>مراجعة الطلب</h2>
+            <div class="products">
+            </div>
+          </div>
+          <div class="paymentMethods d-none">
+            <h2>طرق الدفع</h2>
+            <div class="methods">
+              <div class="method active">
+                <input type="radio" name="paymentMethod" id="onDelivery" checked>
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+                <label for="onDelivery">الدفع عند الاستلام</label>
+              </div>
+              <div class="method disabled">
+                <input type="radio" name="paymentMethod" id="fawry" disabled>
+                <img src="../../sources/fawrypay.png" alt="payment methods">
+                <label for="fawry">الدفع عبر فوري</label>
+              </div>
+              <div class="method">
+                <input type="radio" name="paymentMethod" id="vodafoneCash">
+                <img src="../../sources/vfcash.png" alt="payment methods">
+                <label for="vodafoneCash">الدفع عبر فودافون كاش</label>
+                <div class="payment-details">
+                  <p>رقم فودافون كاش: 01027467022</p>
+                  <p>الاسم: خالد وليد</p>
+                  <p>بعد الدفع، يرجى إرسال صورة الإيصال إلى رقم الواتساب التالي لتأكيد الدفع:</p>
+                  <a href="https://www.wa.me/+201027467022" target="_blank">اتصل بنا على واتساب</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+    </div>
+
+
+    <section class="footer">
+      <div class="container" id="footer">
+        <div dir="rtl" class="row first">
+          <div class=" info">
+            <div class="logoContainer">
+              <img src="../../sources/logo.png" alt="">
+            </div>
+            <div class="aboutUs">
+              <p dir="rtl">TeeNzy هو متجر إلكتروني متخصص في بيع التيشيرتات والملابس المخصصة. نحن نقدم لك فرصة لتصميم تيشيرتك الخاص باستخدام تقنيات الذكاء الاصطناعي المتقدمة. سواء كنت تبحث عن تيشيرت بسيط أو تصميم فريد يعكس شخصيتك، نحن هنا لتحقيق ذلك.</p>
+            </div>
+            <div class="social">
+            <a href="https://www.facebook.com/profile.php?id=61578806815180"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.instagram.com/teenzy_store?igsh=NHdsdDdpMzd6eXR1"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@teenzy73?_t=ZS-8zeuAbljmj3&_r=1 "><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://www.wa.me/+201061193251 "><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </div>
+          <div class=" fast-links">
+            <h3>روابط سريعة</h3>
+            <ul>
+              <li><a href="../designers/">صمم تيشيرتك</a></li>
+              <li><a href="../catalog/">كل المنتجات</a></li>
+              <li><a href="../../index.html#analyse">أراء العملاء</a></li>
+              <li><a href="../policy/shippingInfo.html">خدمة التوصيل</a></li>
+              <li><a href="../policy/refunInfo.html">سياسة الاستبدال و الاسترجاع</a></li>
+              <li><a href="../policy/policy.html">سياسة الخصوصية</a></li>
+              </ul>
+            </div>
+          <div class=" contact">
+            <h3>تواصل معنا</h3>
+            <div class="contact-item">
+              <p>الهاتف: 01061193251</p>
+              <p>البريد الإلكتروني: <a style="color: #fff;" href="mail:teenzy8080@gmail.com">teenzy8080@gmail.com</a> </p>
+            </div>
+            </div>
+        </div>
+        <div dir="rtl" class="row endless">
+          <div class="col-10 text-end">
+            <p dir="ltr">&copy; 2025 TeeNzy. جميع الحقوق محفوظة.</p>
+          </div>
+          <div class="col-2 text-center">
+            <img src="https://www.fawry.com/wp-content/uploads/2022/07/Fawry-English-Horizontal-1536x481.png" alt="Fawrypay" width="100px">
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <div class="mainOverlay"></div>
+
+    <script type="module" src="../../script/cart.js"></script>
+</body>
+</html>
