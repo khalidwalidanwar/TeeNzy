@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../style/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <title>TeeNzy - Profile</title>
+</head>
+<body>
+    <header>
+        <div class="info">
+          <button class="cart"><i class="fa-solid fa-cart-shopping"></i></button>
+        </div>
+        <div class="links">
+            <div class="menuBar"><i class="fa-solid fa-bars"></i></div>
+            <div class="menu">
+                <div class="controle"><i class="fa-solid fa-x"></i></div>
+                <ul>
+                    <li class="madeYourT"><a href="../designers/">صمم تيشيرتك</a></li>
+                    <li><a href="../catalog/">كل المنتجات</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="logo"><a href="../../">
+            <h1>Tee<span>N</span>zy</h1>
+            <!-- <img src="./sources/0.png" alt="TeeNzy"> -->
+        </a></div>
+    </header>
+
+    <div class="container main" dir="rtl">
+        <div class="info" dir="ltr">
+            <div class="profile-pic">
+                <img src="../../sources/user.png" alt="Profile Picture">
+            </div>
+            <div class="user-details">
+                <div class="inputs">
+                    <input type="text" class="form-control fName" placeholder="First Name">
+                    <input type="text" class="form-control lName" placeholder="Last Name">
+                </div>
+                <input type="text" disabled class="email" value="">
+                <button class="edit-profile btn btn-success">Save</button>
+            </div>
+            <div class="addresses">
+                <h3>Addresses</h3>
+                <div class="address-list">
+                    <p>No addresses yet.</p>
+                </div>
+                <button class="add-address btn btn-primary">Add New Address</button>
+            </div>
+            <button class="logout">Logout</button>
+        </div>
+        <div class="orders" dir="ltr">
+            <h3>Order History</h3>
+            <div class="order-list">
+                <!-- <div class="order-item">
+                    <div class="orderDetails">
+                        <p class="order-id">Order ID: 123456</p>
+                        <p class="order-date">Date: 2023-10-01</p>
+                        <p class="order-status">Status: Delivered</p>
+                        <p class="order-total">Total: $49.99</p>
+                    </div>
+                    <button class="view-details btn btn-info">View Details</button>
+                </div> -->
+                 <p class="noOrders">There is no orders yet.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="orderPreview">
+        <div class="orderContent">
+            <div class="controle"><i class="fa-solid fa-x"></i></div>
+            <h3>Order Details</h3>
+            <div class="orderDetailsContent">
+                <!-- Order details will be loaded here -->
+            </div>
+        </div>
+    </div>
+    <div class="prompt">
+        <div class="container">
+            <div class="information">
+                <input type="text" class="form-control location" placeholder=" عنزانك بالتفصيل">
+                <input type="number" class="form-control phone" placeholder="رقم الهاتف">
+                <input type="text" class="form-control city" placeholder="المدينة">
+                <select name="governorate" class="form-control country" id="governorate">
+                    <option value="أسوان">أسوان</option>
+                    <option value="أسيوط">أسيوط</option>
+                    <option value="الإسكندرية">الإسكندرية</option>
+                    <option value="الإسماعيلية">الإسماعيلية</option>
+                    <option value="الأقصر">الأقصر</option>
+                    <option value="البحر الأحمر">البحر الأحمر</option>
+                    <option value="البحيرة">البحيرة</option>
+                    <option value="بني سويف">بني سويف</option>
+                    <option value="بورسعيد">بورسعيد</option>
+                    <option value="الجيزة">الجيزة</option>
+                    <option value="الدقهلية">الدقهلية</option>
+                    <option value="دمياط">دمياط</option>
+                    <option value="سوهاج">سوهاج</option>
+                    <option value="الشرقية">الشرقية</option>
+                    <option value="شمال سيناء">شمال سيناء</option>
+                    <option value="الغربية">الغربية</option>
+                    <option value="الفيوم">الفيوم</option>
+                    <option value="القاهرة">القاهرة</option>
+                    <option value="القليوبية">القليوبية</option>
+                    <option value="قنا">قنا</option>
+                    <option value="كفر الشيخ">كفر الشيخ</option>
+                    <option value="المنوفية">المنوفية</option>
+                    <option value="المنيا">المنيا</option>
+                    <option value="مطروح">مطروح</option>
+                    <option value="الوادي الجديد">الوادي الجديد</option>
+                    <option value="السويس">السويس</option>
+                    <option value="جنوب سيناء">جنوب سيناء</option>
+                </select>
+            </div>
+            <button class="btn btn-success submit">حفظ</button>
+        </div>
+    </div>
+    <div class="mainOverlay"></div>
+    <script type="module" src="../../script/profile.js"></script>
+</body>
+</html>
