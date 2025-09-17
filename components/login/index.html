@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../style/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <title>TeeNzy - Login</title>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init({
+            publicKey: "F4aSC97Sgv-BtQApI",
+        });
+    })();
+    </script>
+</head>
+<body>
+
+    <div class="container" dir="rtl">
+        <div class="logo">
+            <h1>Tee<span>N</span>zy</h1>
+            <!-- <img src="./sources/0.png" alt="TeeNzy"> -->
+        </div>
+        <div class="form-container">
+            <form id="loginForm" method="post" action="#">
+                <div >
+                    <h2>تسجيل الدخول</h2>
+                    <label for="email" class="form-label">أدخل بريدك الإلكتروني وسنرسل لك رمز التحقق</label>
+                </div>
+                <input type="email" class="form-control mb-3" id="email" placeholder="البريد الاكتروني" required>
+                <button type="submit" class="btn btn-success w-100">متابعة</button>
+                <p class="policy">
+                    بالضغط على "متابعة"، فإنك توافق على <a style="color:var(--maincolor)" href="../policy/policy.html">سياسة الخصوصية</a>.
+                </p>
+            </form>
+        </div>
+    </div>
+    <script type="module" src="../../script/app.js"></script>
+    <script src="../../script/login.js" type="module"></script>
+</body>
+</html>
