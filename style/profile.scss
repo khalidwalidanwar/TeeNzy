@@ -7,6 +7,17 @@ header{
 body{
     background-color: var(--maincolor);
 }
+@media only screen and (max-width: 500px) {
+    .prompt{
+        width: 90%;
+        .container{
+            width: 100%;
+            .information{
+                grid-template-columns: 1fr !important;
+            }
+        }
+    }
+}
 @media only screen and (max-width: 800px) {
     header{
         display: grid;
@@ -347,7 +358,7 @@ body{
 }
 
 .prompt{
-    position: absolute;
+    position: fixed;
     top: -100%;
     left: 50%;
     transform: translate(-50%,-50%);
