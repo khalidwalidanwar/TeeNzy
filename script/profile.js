@@ -1,5 +1,5 @@
-import {getCookie, setCookie, eraseCookie} from './main.js';
-import {app, db, collection, getDocs, addDoc, query,limit,where ,deleteDoc,doc,updateDoc,getDoc} from './app.js';
+import {getCookie, setCookie, eraseCookie} from 'https://khalidwalidanwar.github.io/TeeNzy/script/main.js';
+import {app, db, collection, getDocs, addDoc, query,limit,where ,deleteDoc,doc,updateDoc,getDoc} from 'https://khalidwalidanwar.github.io/TeeNzy/script/app.js';
 
 const menu =document.querySelector("header .links .menu")
 const overlay =document.querySelector(".mainOverlay");
@@ -201,10 +201,10 @@ window.addEventListener("load", async()=>{
             }
         } else {
             alert("No such document!");
-            window.location.href = '../login/';
+            window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/login/';
         }
     }else{
-        window.location.href = '../login/';
+        window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/login/';
     }
 })
 
@@ -224,7 +224,7 @@ document.querySelector(".info .edit-profile").addEventListener("click",async()=>
             });
         }else {
             alert("No such document!");
-            window.location.href = '../login/';
+            window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/login/';
         }
     }else{
         window.location.reload();
@@ -346,14 +346,14 @@ overlay.addEventListener("click",()=>{
 document.querySelector("header .info .cart").addEventListener("click",()=>{
     if(getCookie('userId')){
         if(window.localStorage.cart && Object.values(JSON.parse(window.localStorage.cart)).length > 0){
-            window.location.href = '../orderConfirmation/cart.html';
+            window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/orderConfirmation/cart.html';
         }else{
             alert("! يرجي اضافة منتجات الي العربة ")
-            window.location.href = '../catalog/';
+            window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/catalog/';
         }
     }else{
         alert('يرجى تسجيل الدخول أولاً للوصول إلى سلة التسوق.');
-        window.location.href = '../login/';
+        window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/login/';
     }
 });
 }
@@ -369,7 +369,7 @@ document.querySelector(".logout").addEventListener("click", function() {
         isVerified: false
     });
     alert("You have been logged out.");
-    window.location.href = "../../";
+    window.location.href = "https://khalidwalidanwar.github.io/TeeNzy";
 });
 
 function closePrompt() {
@@ -380,4 +380,5 @@ function closePrompt() {
     countryInput.value ='';
     overlay.style.display ='none';
     prompt.removeAttribute("data-index")
+
 }
