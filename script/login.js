@@ -1,12 +1,12 @@
-import {getCookie, setCookie, eraseCookie} from './main.js';
-import {app, db, collection, getDocs, addDoc, query,limit,where ,deleteDoc,doc,updateDoc,getDoc} from './app.js';
+import {getCookie, setCookie, eraseCookie} from 'https://khalidwalidanwar.github.io/TeeNzy/script/main.js';
+import {app, db, collection, getDocs, addDoc, query,limit,where ,deleteDoc,doc,updateDoc,getDoc} from 'https://khalidwalidanwar.github.io/TeeNzy/script/app.js';
 // check if user is logged in
 window.addEventListener('load', () => {
     const user = getCookie('userId');
     if(getCookie("emailToVirify")){
-        window.location.href = './verify.html';
+        window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/login/verify.html';
     }else if(user){
-        window.location.href = '../../';
+        window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy';
     }
 });
 // handle login form submission
@@ -37,7 +37,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
                 sendVerificationEmail(email, verificationCode);
                 setCookie('userId', userDoc.id, 60*24*365); // 1 Year
                 alert(`تم ارسال رمز التحقق الي ${email}. الرمز صالح لمدة 15 دقائق`);
-                window.location.href = './verify.html';
+                window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/login/verify.html';
             });
         } else {
             // User does not exist, create new user
@@ -45,7 +45,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
                 sendVerificationEmail(email, verificationCode);
                 setCookie('userId', docRef.id, 60*24*365); // 1 Year
                 alert(`تم ارسال رمز التحقق الي ${email}. الرمز صالح لمدة 15 دقائق`);
-                window.location.href = './verify.html';
+                window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/login/verify.html';
             });
         }
     }).catch((error) => {
@@ -84,4 +84,5 @@ function sendVerificationEmail(email, code) {
             alert('Failed to send verification email. Please try again later.');
             console.log('FAILED...', error);
         });
+
 }
