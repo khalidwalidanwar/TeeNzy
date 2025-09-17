@@ -73,6 +73,9 @@ body{
             }
         }
     }
+    .prompt .container .information{
+        grid-template-columns: 1fr !important;
+    }
 }
 
 .container.main{

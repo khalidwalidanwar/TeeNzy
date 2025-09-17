@@ -317,6 +317,9 @@ body {
   header .menu ul li:hover {
     scale: 1.1;
   }
+  .prompt .container .information {
+    grid-template-columns: 1fr !important;
+  }
 }
 .container.main {
   width: 90%;
