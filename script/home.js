@@ -239,17 +239,17 @@ const loadProducts = async (category, subname, containerSelector,zlimit) => {
             card.querySelector("img").addEventListener("click",()=>{
                 document.querySelector(".productPreview").classList.remove("d-none");
                 // load images container
-                document.querySelector(".productPreview .productImagesContainer .productImage img").src = `../sources/${data.imgUrl[0]}`;
+                document.querySelector(".productPreview .productImagesContainer .productImage img").src = `./sources/${data.imgUrl[0]}`;
                 const thumbnailContainer = document.querySelector(".productPreview .productImagesContainer .thumbnailContainer");
                 thumbnailContainer.innerHTML = '';
                 data.imgUrl.forEach((imgUrl, index) => {
                 const thumbnail = document.createElement("img");
-                thumbnail.src = `../sources/${imgUrl}`;
+                thumbnail.src = `./sources/${imgUrl}`;
                 thumbnail.alt = `Thumbnail ${index + 1}`;
                 thumbnail.classList.add("thumbnail");
                 if (index === 0) thumbnail.classList.add("active");
                 thumbnail.addEventListener("click", () => {
-                    document.querySelector(".productPreview .productImagesContainer .productImage img").src = `../sources/${imgUrl}`;
+                    document.querySelector(".productPreview .productImagesContainer .productImage img").src = `./sources/${imgUrl}`;
                     thumbnailContainer.querySelectorAll(".thumbnail").forEach(thumb => thumb.classList.remove("active"));
                     thumbnail.classList.add("active");
                 });
@@ -764,3 +764,4 @@ window.addEventListener('scroll', function(e) {
 import {getCookie, setCookie, eraseCookie} from './main.js';
 
 // eraseCookie("user")
+
