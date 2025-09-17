@@ -1,5 +1,5 @@
-import {getCookie, setCookie, eraseCookie} from './main.js';
-import {app, db,setDoc , collection, getDocs, addDoc, query,limit,where ,deleteDoc,doc,updateDoc,getDoc} from './app.js';
+import {getCookie, setCookie, eraseCookie} from 'https://khalidwalidanwar.github.io/TeeNzy/script/main.js';
+import {app, db,setDoc , collection, getDocs, addDoc, query,limit,where ,deleteDoc,doc,updateDoc,getDoc} from 'https://khalidwalidanwar.github.io/TeeNzy/script/app.js';
 const menuBar =document.querySelector("header .links .menuBar")
 const menu =document.querySelector("header .links .menu")
 const menuControle =document.querySelector("header .links .menu .controle")
@@ -11,13 +11,13 @@ var finalSelectedAddress = null;
 var finalPaymentMethod = "onDelivery";
 
 if(!getCookie("userId")){
-    window.location.href = '../';
+    window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy';
 }else if(!getCookie("emailToVirify")){
     if(!window.localStorage.cart || Object.values(JSON.parse(window.localStorage.cart)).length === 0){
-        window.location.href = '../';
+        window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy';
     }
 }else{
-    window.location.href = '../login/verify.html';
+    window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/login/verify.html';
 }
 window.addEventListener("load",async()=>{
     if(window.localStorage.cart && Object.values(JSON.parse(window.localStorage.cart)).length > 0){
@@ -41,7 +41,7 @@ window.addEventListener("load",async()=>{
                 const user = userSnap.data();
                 if(!user.addresses || Object.values(user.addresses).length === 0){
                     alert("من فضلك قم بإضافة عنوان توصيل في صفحة الملف الشخصي قبل إتمام الطلب");
-                    window.location.href = '../profile/';
+                    window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/profile/';
                 }
                 document.querySelector(".userInfo .username").innerHTML = (user.firstName || "") + " " + (user.lastName || "");
                 document.querySelector(".userInfo .email").innerHTML = user.email;
@@ -85,7 +85,7 @@ window.addEventListener("load",async()=>{
                 </div>
             </div>
             <div class="imgContainer">
-                <img src="../../sources/${item.imgUrl[0]}" alt="">
+                <img src="https://khalidwalidanwar.github.io/TeeNzy/sources/${item.imgUrl[0]}" alt="">
             </div>
             <div class="totalPrice">
                 <p>المجموع : </p>
@@ -232,27 +232,27 @@ window.addEventListener("load",async()=>{
                         if(product.size == "Small"){
                         await updateDoc(productRef, { "avaliableSizes.Small": newQty, status: newStatus }).then(()=>{
                             window.localStorage.removeItem("cart");
-                            window.location.href = '../profile/';
+                            window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/profile/';
                         });
                         }else if(product.size == "Medium"){
                         await updateDoc(productRef, { "avaliableSizes.Medium": newQty, status: newStatus }).then(()=>{
                             window.localStorage.removeItem("cart");
-                            window.location.href = '../profile/';
+                            window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/profile/';
                         });
                         }else if(product.size == "Large"){
                         await updateDoc(productRef, { "avaliableSizes.Large": newQty, status: newStatus }).then(()=>{
                             window.localStorage.removeItem("cart");
-                            window.location.href = '../profile/';
+                            window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/profile/';
                         });
                         }else if(product.size == "XL"){
                         await updateDoc(productRef, { "avaliableSizes.XL": newQty, status: newStatus }).then(()=>{
                             window.localStorage.removeItem("cart");
-                            window.location.href = '../profile/';
+                            window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/profile/';
                         });
                         }else if(product.size == "2XL"){
                         await updateDoc(productRef, { "avaliableSizes.2XL": newQty, status: newStatus }).then(()=>{
                             window.localStorage.removeItem("cart");
-                            window.location.href = '../profile/';
+                            window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/profile/';
                         });
                         }
                     }
@@ -277,27 +277,27 @@ window.addEventListener("load",async()=>{
                         if(product.size == "Small"){
                         await updateDoc(productRef, { "avaliableSizes.Small": newQty, status: newStatus }).then(()=>{
                             window.localStorage.removeItem("cart");
-                            window.location.href = '../profile/';
+                            window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/profile/';
                         });
                         }else if(product.size == "Medium"){
                         await updateDoc(productRef, { "avaliableSizes.Medium": newQty, status: newStatus }).then(()=>{
                             window.localStorage.removeItem("cart");
-                            window.location.href = '../profile/';
+                            window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/profile/';
                         });
                         }else if(product.size == "Large"){
                         await updateDoc(productRef, { "avaliableSizes.Large": newQty, status: newStatus }).then(()=>{
                             window.localStorage.removeItem("cart");
-                            window.location.href = '../profile/';
+                            window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/profile/';
                         });
                         }else if(product.size == "XL"){
                         await updateDoc(productRef, { "avaliableSizes.XL": newQty, status: newStatus }).then(()=>{
                             window.localStorage.removeItem("cart");
-                            window.location.href = '../profile/';
+                            window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/profile/';
                         });
                         }else if(product.size == "2XL"){
                         await updateDoc(productRef, { "avaliableSizes.2XL": newQty, status: newStatus }).then(()=>{
                             window.localStorage.removeItem("cart");
-                            window.location.href = '../profile/';
+                            window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/profile/';
                         });
                         }
                     }
@@ -309,13 +309,13 @@ window.addEventListener("load",async()=>{
                 alert("حدث خطأ أثناء تقديم الطلب. يرجى المحاولة مرة أخرى.");
                 }
             }else{
-                window.location.href = '../login/';
+                window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/login/';
             }
             })
         }
 
     }else{
-        window.location.href='../../../';
+        window.location.href='https://khalidwalidanwar.github.io/TeeNzy';
     }
 })
 
@@ -346,13 +346,14 @@ window.addEventListener("load",async()=>{
     document.querySelector("header .info .userProfile").addEventListener("click",()=>{
         if(getCookie('userId')){
             if(!getCookie("emailToVirify")){
-                window.location.href = '../profile/';
+                window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/profile/';
             }else{
-                window.location.href = '../login/verify.html';
+                window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/login/verify.html';
             }
         }else{
-            window.location.href = '../login/';
+            window.location.href = 'https://khalidwalidanwar.github.io/TeeNzy/components/login/';
         }
 })
 }
+
 
