@@ -1,0 +1,697 @@
+:root {
+  --mainbgcolor: #fff;
+  --primarybgcolor: #efeff2;
+  --mainFontcolor: #c0c0c0;
+  --maincolor: #198754;
+  --exstracolor:#178f57;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  scrollbar-width: thin; /* "auto" | "thin" | "none" */
+  scrollbar-color: #198754 #e6e7ea; /* thumb | track */
+}
+
+/* Works in Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 12px; /* scrollbar width */
+  height: 12px; /* scrollbar height (for horizontal) */
+}
+
+::-webkit-scrollbar-track {
+  background: #e6e7ea; /* track background */
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #198754; /* thumb color */
+  border-radius: 8px; /* rounded corners */
+  border: 2px solid #e6e7ea; /* space around thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #146c43; /* darker on hover */
+}
+
+ul {
+  list-style: none;
+}
+
+textarea {
+  resize: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+body {
+  background-color: var(--mainbgcolor);
+  overflow-x: hidden;
+}
+
+@media only screen and (max-width: 800px) {
+  header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  header .links .menuBar {
+    display: block !important;
+  }
+  header .info {
+    position: absolute;
+    top: 11px;
+    right: -100%;
+    z-index: 5;
+    transition: 0.7s;
+  }
+  header .menu {
+    height: 100vh;
+    /* width: 35%; */
+    background-color: rgba(221, 221, 221, 0.9725490196);
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    right: -100%;
+    padding: 10px 20px;
+  }
+  header .menu .controle {
+    display: block !important;
+    text-align: right;
+    width: 100%;
+    margin: 5px 0px 20px 0;
+  }
+  header .menu .controle i {
+    cursor: pointer;
+  }
+  header .menu ul {
+    border-top: 1px solid rgba(0, 0, 0, 0.473);
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    padding: 0;
+  }
+  header .menu ul .madeYourT {
+    margin-top: 20px;
+  }
+  header .menu ul .madeYourT button {
+    margin-right: 0px !important;
+    border-radius: 10px;
+  }
+  header .menu ul li {
+    transition: 0.5s;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.473);
+    width: 100%;
+    padding: 8px 20px 5px 20px;
+    width: 100%;
+    text-align: left;
+  }
+  header .menu ul li a {
+    color: #000;
+  }
+  header .menu ul li:hover {
+    scale: 1.1;
+  }
+  section.trend {
+    padding-top: 48px !important;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .endless {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .endless p {
+    text-align: center !important;
+  }
+  #liveAlertPlaceholder {
+    width: 95% !important;
+  }
+}
+@media only screen and (max-width: 500px) {
+  section.AI .prompt {
+    min-width: 90%;
+  }
+  section.collection .product-grid {
+    min-height: 250px;
+  }
+  section.collection .card {
+    min-width: 150px;
+    max-width: 150px;
+  }
+  .product-info .product-title {
+    height: auto !important;
+  }
+  .product-info .action {
+    position: relative !important;
+    bottom: 0 !important;
+    padding: 0 !important;
+  }
+  .product-info .lastPrice {
+    position: absolute !important;
+    left: 0 !important;
+    top: 30px !important;
+  }
+}
+.d-none {
+  display: none !important;
+}
+
+#liveAlertPlaceholder {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 60%;
+  z-index: 999;
+  transition: 0.5s;
+}
+
+.mainOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3098039216);
+  display: none;
+  z-index: 3;
+}
+
+body {
+  background-color: #000;
+}
+
+.welcome {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 0 1rem;
+  position: fixed;
+  width: 100%;
+  background: #000;
+  z-index: 10;
+  margin-top: -15px;
+}
+.welcome p {
+  margin: 0;
+}
+
+.container {
+  position: relative;
+  background-color: #313131;
+  z-index: 5;
+  border-radius: 10px;
+  margin-top: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  min-height: 95vh;
+}
+.container img {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  pointer-events: none;
+  max-width: 120px;
+  border-radius: 10px;
+}
+.container .optionsContainer {
+  display: grid;
+  padding: 20px;
+  background-color: var(--secondarybgcolor);
+  border-radius: 10px 10px 0 0;
+}
+.container .optionsContainer .option.printing-front-back .optionOptions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  gap: 0;
+  color: #fff;
+}
+.container .optionsContainer .option.printing-front-back .optionOptions .back-front-side {
+  padding: 10px;
+  width: 50%;
+}
+.container .optionsContainer .option.printing-front-back .optionOptions .back-front-side:first-child {
+  border-right: 1px solid #ddd;
+}
+.container .optionsContainer .option.printing-front-back .optionOptions .back-front-side h4 {
+  border-bottom: 1px dashed #ccc;
+  text-align: center;
+}
+.container .optionsContainer .option.printing-front-back .optionOptions .back-front-side .side-cont {
+  min-height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .optionsContainer .option.printing-front-back .optionOptions .back-front-side .side-cont .phprv {
+  position: relative;
+  padding: 10px;
+}
+.container .optionsContainer .option.printing-front-back .optionOptions .back-front-side .side-cont .phprv img {
+  max-width: 120px;
+  border-radius: 5px;
+}
+.container .optionsContainer .option.printing-front-back .optionOptions .back-front-side .side-cont .phprv .removeBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.container .optionsContainer .option.printing-front-back .optionOptions .back-front-side .side-cont .phprv .removeBtn i {
+  color: #dc3545;
+}
+.container .optionsContainer .option.printing-front-back .optionOptions .back-front-side .side-cont .photoUpload {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+}
+.container .optionsContainer .option.printing-front-back .optionOptions .back-front-side .side-cont .photoUpload i {
+  font-size: 20px;
+}
+.container .optionsContainer .option.printing-front-back .saveBtn {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+.container .optionsContainer .option {
+  margin-bottom: 20px;
+}
+.container .optionsContainer .option:last-child {
+  margin-bottom: 0;
+}
+.container .optionsContainer .option h3 {
+  margin-bottom: 8px;
+  text-align: left;
+  color: #fff;
+}
+.container .optionsContainer .option .optionDesc {
+  margin-bottom: 15px;
+  color: var(--mainFontcolor);
+  font-size: 15px;
+  text-align: left;
+}
+.container .optionsContainer .option .head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container .optionsContainer .option .arrow {
+  display: none;
+  font-size: 1.2rem;
+  margin-right: 10px;
+  color: var(--mainFontcolor);
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.container .optionsContainer .option.active {
+  border-bottom: 2px solid var(--maincolor);
+  border-radius: 10px;
+  padding-bottom: 20px;
+}
+.container .optionsContainer .option.active .arrow {
+  display: block;
+}
+.container .optionsContainer .option.hidden {
+  height: 41px;
+  overflow: hidden;
+  border-bottom: 2px solid var(--maincolor);
+  border-radius: 10px;
+}
+.container .optionsContainer .option.hidden .arrow {
+  display: block;
+}
+.container .optionsContainer .optionOptions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.container .optionsContainer .optionOptions .optionOption {
+  background-color: var(--primarybgcolor);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.container .optionsContainer .optionOptions .optionOption:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.container .optionsContainer .optionOptions .optionOption.selected {
+  border: 1px dashed var(--maincolor);
+}
+.container .optionsContainer .optionOptions .optionOption p {
+  margin-top: 5px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+.container .optionsContainer .colorPallette {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 5px;
+  cursor: pointer;
+  position: relative;
+}
+.container .optionsContainer .colorPallette::after {
+  content: attr(data-color);
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #fff;
+  width: 130%;
+  text-align: center;
+  font-weight: bold;
+}
+.container .optionsContainer .regularOversize {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+  color: #fff;
+}
+.container .optionsContainer .regularOversize .regularSizes {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+.container .optionsContainer .regularOversize .regularSizes a {
+  color: var(--maincolor);
+}
+.container .optionsContainer .gemini:hover {
+  transform: none !important;
+}
+.container .optionsContainer .photoPreview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .optionsContainer .photoPreview .container2 {
+  background-color: #ddd;
+  border-radius: 10px;
+  text-align: center;
+  width: auto !important;
+  padding: 20px 60px !important;
+}
+.container .optionsContainer .photoPreview .container2 img {
+  width: 265px;
+  max-width: 100%;
+  height: 265px;
+  border-radius: 10px;
+}
+.container .optionsContainer .photoPreview .container2 .checkBtn {
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  margin: auto;
+  gap: 15px;
+  margin-top: 15px;
+}
+.container .optionsContainer .photoPreview .container2 .checkBtn button {
+  font-size: 25px;
+}
+.container .optionsContainer .preview .tshirtPreview {
+  position: relative;
+  text-align: center;
+}
+.container .optionsContainer .preview .tshirtPreview .imgcanvas {
+  position: relative;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+.container .optionsContainer .preview .tshirtPreview img#tshirtImage {
+  max-width: 225px;
+}
+.container .optionsContainer .preview .tshirtPreview .designFrontImage {
+  position: absolute;
+  top: 43%;
+  left: 27%;
+  transform: translate(-50%, -50%);
+  max-width: 50px;
+  max-height: 150px;
+  border-radius: 10px;
+  margin: 0 !important;
+}
+.container .optionsContainer .preview .tshirtPreview .designFrontImage.upperLeft {
+  top: 35%;
+  left: 31%;
+  max-width: 17px;
+}
+.container .optionsContainer .preview .tshirtPreview .designFrontImage.upperRight {
+  top: 35% !important;
+  left: 21% !important;
+  max-width: 17px !important;
+}
+.container .optionsContainer .preview .tshirtPreview .designFrontImage.upperMiddle {
+  top: 36%;
+  left: 27%;
+  max-width: 20px;
+}
+.container .optionsContainer .preview .tshirtPreview .designFrontImage.center {
+  top: 43%;
+  left: 27%;
+  max-width: 35px;
+}
+.container .optionsContainer .preview .tshirtPreview .designBackImage {
+  position: absolute;
+  top: 50%;
+  left: 73%;
+  transform: translate(-50%, -50%);
+  max-width: 40px;
+  max-height: 150px;
+  border-radius: 10px;
+  margin: 0 !important;
+}
+.container .optionsContainer .preview .tshirtPreview .designImage {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 90px;
+  max-height: 150px;
+  border-radius: 10px;
+  margin: 0 !important;
+}
+.container .optionsContainer .preview .tshirtPreview p {
+  font-size: 12px;
+  color: rgb(236, 236, 1);
+  max-width: 350px;
+  margin: auto;
+  margin-top: 15px;
+}
+.container .optionsContainer .preview .tshirtPreview :last-child {
+  margin-top: 5px;
+}
+.container .optionsContainer .preview .action {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.container .ztshirtsummary {
+  width: 60%;
+  background-color: var(--mainbgcolor);
+  padding: 20px;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.container .ztshirtsummary h3 {
+  margin-bottom: 15px;
+  text-align: left;
+}
+.container .ztshirtsummary .summaryDetails {
+  text-align: center;
+}
+.container .ztshirtsummary .summaryDetails p {
+  margin: 5px 0;
+  font-size: 15px;
+  color: #000;
+  text-align: left;
+  padding-right: 10px;
+  width: 50%;
+  display: inline;
+}
+.container .ztshirtsummary .summaryDetails p span {
+  font-weight: bold;
+  color: var(--maincolor);
+}
+.container .ztshirtsummary .summaryDetails p input {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 90px;
+  outline: none;
+  margin: 10px;
+  padding: 5px 10px;
+}
+.container .ztshirtsummary .summaryDetails p.special {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+.container .ztshirtsummary button {
+  margin-top: 15px;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--maincolor);
+  color: #fff;
+}
+
+@media (max-width: 575px) {
+  .container {
+    border-radius: 0;
+    margin: 0 auto;
+    margin-top: 15px;
+    width: 90% !important;
+  }
+  .container .checkBtn button {
+    font-size: 16px !important;
+  }
+  .container .optionOptions .optionOption img {
+    width: 95px !important;
+  }
+  .container .optionsContainer {
+    border-radius: 0 0 10px 10px;
+  }
+  .container .optionsContainer .printing .form {
+    flex-direction: column;
+  }
+  .container .optionsContainer .printing .form input {
+    width: 100%;
+  }
+  .container .ztshirtsummary {
+    width: 90%;
+    padding: 15px;
+  }
+  .container .ztshirtsummary h3 {
+    font-size: 1.2rem;
+  }
+  .container .ztshirtsummary .summaryDetails p {
+    font-size: 14px;
+  }
+  .container .ztshirtsummary button {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+.optionOption.inactivated {
+  opacity: 0.5;
+  cursor: not-allowed;
+  position: relative;
+}
+.optionOption.inactivated::after {
+  content: "Comming Soon....";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  opacity: 1;
+}
+
+.ai-back-form {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+}
+.ai-back-form .ai-cont-form {
+  display: grid;
+  gap: 10px;
+  background-color: #757575;
+  padding: 20px;
+  border-radius: 10px;
+  width: 70%;
+}
+.ai-back-form .ai-cont-form .ai-prompt {
+  flex: 1;
+}
+.ai-back-form .ai-cont-form .ai-prompt input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.ai-back-form .ai-cont-form .ai-generate-btn button {
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.generating-Tshirt-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.generating-Tshirt-loading video {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.bodyBgVid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: 1;
+}/*# sourceMappingURL=designs.css.map */

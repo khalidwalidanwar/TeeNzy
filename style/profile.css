@@ -13,6 +13,29 @@
   font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 400;
   font-style: normal;
+  scrollbar-width: thin; /* "auto" | "thin" | "none" */
+  scrollbar-color: #198754 #e6e7ea; /* thumb | track */
+}
+
+/* Works in Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 12px; /* scrollbar width */
+  height: 12px; /* scrollbar height (for horizontal) */
+}
+
+::-webkit-scrollbar-track {
+  background: #e6e7ea; /* track background */
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #198754; /* thumb color */
+  border-radius: 8px; /* rounded corners */
+  border: 2px solid #e6e7ea; /* space around thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #146c43; /* darker on hover */
 }
 
 ul {
@@ -44,7 +67,7 @@ body {
   header .info {
     position: absolute;
     top: 11px;
-    left: -100%;
+    right: -100%;
     z-index: 5;
     transition: 0.7s;
   }
@@ -55,12 +78,12 @@ body {
     flex-direction: column;
     position: absolute;
     top: 0;
-    left: -100%;
+    right: -100%;
     padding: 10px 20px;
   }
   header .menu .controle {
     display: block !important;
-    text-align: left;
+    text-align: right;
     width: 100%;
     margin: 5px 0px 20px 0;
   }
@@ -89,13 +112,16 @@ body {
     width: 100%;
     padding: 8px 20px 5px 20px;
     width: 100%;
-    text-align: right;
+    text-align: left;
   }
   header .menu ul li a {
     color: #000;
   }
   header .menu ul li:hover {
     scale: 1.1;
+  }
+  section.trend {
+    padding-top: 48px !important;
   }
 }
 @media only screen and (max-width: 600px) {
@@ -106,6 +132,9 @@ body {
   }
   .endless p {
     text-align: center !important;
+  }
+  #liveAlertPlaceholder {
+    width: 95% !important;
   }
 }
 @media only screen and (max-width: 500px) {
@@ -133,6 +162,19 @@ body {
     top: 30px !important;
   }
 }
+.d-none {
+  display: none !important;
+}
+
+#liveAlertPlaceholder {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 60%;
+  z-index: 999;
+  transition: 0.5s;
+}
+
 .mainOverlay {
   position: fixed;
   top: 0;
@@ -190,7 +232,7 @@ header .logo a h1 span {
   color: var(--exstracolor);
 }
 header .logo img {
-  width: 120px;
+  width: 100px;
 }
 header .links .menuBar {
   display: none;
@@ -246,11 +288,16 @@ header .links .menu ul .madeYourT a:hover {
 }
 
 header {
-  position: static;
+  position: relative;
+  overflow: hidden;
 }
 
 body {
   background-color: var(--maincolor);
+}
+
+hr {
+  margin: 10px 0 !important;
 }
 
 @media only screen and (max-width: 800px) {
@@ -259,74 +306,6 @@ body {
   }
   .prompt .container {
     width: 100%;
-  }
-  .prompt .container .information {
-    grid-template-columns: 1fr !important;
-  }
-}
-@media only screen and (max-width: 800px) {
-  header {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-  header .links .menuBar {
-    display: block !important;
-  }
-  header .info {
-    position: absolute;
-    top: 11px;
-    left: -100%;
-    z-index: 5;
-    transition: 0.7s;
-  }
-  header .menu {
-    height: 100vh;
-    /* width: 35%; */
-    background-color: rgba(221, 221, 221, 0.9725490196);
-    flex-direction: column;
-    position: absolute;
-    top: 0;
-    left: -100%;
-    padding: 10px 20px;
-  }
-  header .menu .controle {
-    display: block !important;
-    text-align: left;
-    width: 100%;
-    margin: 5px 0px 20px 0;
-  }
-  header .menu .controle i {
-    cursor: pointer;
-  }
-  header .menu ul {
-    border-top: 1px solid rgba(0, 0, 0, 0.473);
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    text-align: center;
-    padding: 0;
-  }
-  header .menu ul .madeYourT {
-    margin-top: 20px;
-  }
-  header .menu ul .madeYourT button {
-    margin-right: 0px !important;
-    border-radius: 10px;
-  }
-  header .menu ul li {
-    transition: 0.5s;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.473);
-    width: 100%;
-    padding: 8px 20px 5px 20px;
-    width: 100%;
-    text-align: right;
-  }
-  header .menu ul li a {
-    color: #000;
-  }
-  header .menu ul li:hover {
-    scale: 1.1;
   }
   .prompt .container .information {
     grid-template-columns: 1fr !important;
@@ -415,7 +394,7 @@ body {
   border-radius: 5px;
 }
 .container.main .info .addresses .address-list .address-item p {
-  max-width: 300px;
+  max-width: 220px;
   word-wrap: break-word;
 }
 .container.main .info .addresses .address-list .address-item .address-actions {
@@ -459,8 +438,8 @@ body {
   margin: auto;
 }
 .container.main .orders .order-list {
+  max-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 20px;
@@ -487,6 +466,22 @@ body {
   margin: 0;
   font-size: 14px;
 }
+.container.main .orders .order-list .order-item .orderDetails .order-status span {
+  color: var(--maincolor);
+  font-weight: bold;
+}
+.container.main .orders .order-list .order-item .orderDetails .order-status span.preparing {
+  color: rgb(105, 147, 255); /* accent with opacity */
+}
+.container.main .orders .order-list .order-item .orderDetails .order-status span.delivered {
+  color: rgb(33, 206, 153); /* A slightly darker success green */
+}
+.container.main .orders .order-list .order-item .orderDetails .order-status span.cancelled {
+  color: rgb(246, 78, 96); /* danger with opacity */
+}
+.container.main .orders .order-list .order-item .orderDetails .order-status span.pending {
+  color: rgb(255, 184, 34);
+}
 .container.main .orders .order-list .order-item .orderDetails .order-total {
   font-weight: bold;
 }
@@ -502,6 +497,7 @@ body {
 @media (max-width: 400px) {
   .container.main .orders .order-list {
     padding: 0 !important;
+    max-height: unset;
   }
 }
 @media (max-width: 1070px) {
@@ -562,21 +558,41 @@ body {
   display: grid;
   gap: 15px;
 }
-.orderPreview .orderContent .orderDetailsContent .order-item-detail {
-  border-bottom: 1px solid var(--maincolor);
-  padding-bottom: 10px;
+.orderPreview .orderContent .orderDetailsContent h4 {
+  margin-bottom: 0;
 }
-.orderPreview .orderContent .orderDetailsContent .order-item-detail .item-info {
+.orderPreview .orderContent .orderDetailsContent .order-items {
+  overflow-x: scroll;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  padding: 10px 5px;
 }
-.orderPreview .orderContent .orderDetailsContent .order-item-detail .item-info p {
-  margin: 0;
+.orderPreview .orderContent .orderDetailsContent .order-items .order-item-detail, .orderPreview .orderContent .orderDetailsContent .order-items .card {
+  width: 10rem;
+  min-width: 10rem;
+  position: relative;
+}
+.orderPreview .orderContent .orderDetailsContent .order-items .order-item-detail .totalPrice, .orderPreview .orderContent .orderDetailsContent .order-items .card .totalPrice {
+  border-top: 1px solid var(--maincolor);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  padding: 5px 0;
+  background-color: #dddddd;
+  text-align: center;
+}
+.orderPreview .orderContent .orderDetailsContent .order-items .order-item-detail p.last, .orderPreview .orderContent .orderDetailsContent .order-items .card p.last {
+  margin-bottom: 25px;
+}
+.orderPreview .orderContent .orderDetailsContent .order-items .order-item-detail p, .orderPreview .orderContent .orderDetailsContent .order-items .card p {
+  margin-bottom: 0;
 }
 .orderPreview .orderContent .orderDetailsContent .order-location-detail {
   border-bottom: 1px solid var(--maincolor);
   padding-bottom: 10px;
-  text-align: right;
 }
 .orderPreview .orderContent .orderDetailsContent .order-location-detail h4 {
   margin: 0 0 5px 0;
@@ -585,7 +601,6 @@ body {
   margin: 0;
 }
 .orderPreview .orderContent .orderDetailsContent .order-products-total, .orderPreview .orderContent .orderDetailsContent .order-total-detail, .orderPreview .orderContent .orderDetailsContent .order-shipping-detail {
-  text-align: right;
   font-weight: bold;
   font-size: 18px;
 }
@@ -625,7 +640,6 @@ body {
   gap: 15px;
 }
 .prompt .container .information input, .prompt .container .information select {
-  text-align: right;
   width: 90%;
   margin: auto;
   padding: 5px 10px;

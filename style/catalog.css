@@ -13,6 +13,29 @@
   font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 400;
   font-style: normal;
+  scrollbar-width: thin; /* "auto" | "thin" | "none" */
+  scrollbar-color: #198754 #e6e7ea; /* thumb | track */
+}
+
+/* Works in Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 12px; /* scrollbar width */
+  height: 12px; /* scrollbar height (for horizontal) */
+}
+
+::-webkit-scrollbar-track {
+  background: #e6e7ea; /* track background */
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #198754; /* thumb color */
+  border-radius: 8px; /* rounded corners */
+  border: 2px solid #e6e7ea; /* space around thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #146c43; /* darker on hover */
 }
 
 ul {
@@ -44,7 +67,7 @@ body {
   header .info {
     position: absolute;
     top: 11px;
-    left: -100%;
+    right: -100%;
     z-index: 5;
     transition: 0.7s;
   }
@@ -55,12 +78,12 @@ body {
     flex-direction: column;
     position: absolute;
     top: 0;
-    left: -100%;
+    right: -100%;
     padding: 10px 20px;
   }
   header .menu .controle {
     display: block !important;
-    text-align: left;
+    text-align: right;
     width: 100%;
     margin: 5px 0px 20px 0;
   }
@@ -89,13 +112,16 @@ body {
     width: 100%;
     padding: 8px 20px 5px 20px;
     width: 100%;
-    text-align: right;
+    text-align: left;
   }
   header .menu ul li a {
     color: #000;
   }
   header .menu ul li:hover {
     scale: 1.1;
+  }
+  section.trend {
+    padding-top: 48px !important;
   }
 }
 @media only screen and (max-width: 600px) {
@@ -106,6 +132,9 @@ body {
   }
   .endless p {
     text-align: center !important;
+  }
+  #liveAlertPlaceholder {
+    width: 95% !important;
   }
 }
 @media only screen and (max-width: 500px) {
@@ -133,6 +162,19 @@ body {
     top: 30px !important;
   }
 }
+.d-none {
+  display: none !important;
+}
+
+#liveAlertPlaceholder {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 60%;
+  z-index: 999;
+  transition: 0.5s;
+}
+
 .mainOverlay {
   position: fixed;
   top: 0;
@@ -190,7 +232,7 @@ header .logo a h1 span {
   color: var(--exstracolor);
 }
 header .logo img {
-  width: 120px;
+  width: 100px;
 }
 header .links .menuBar {
   display: none;
@@ -251,7 +293,8 @@ body {
 }
 
 header {
-  position: static;
+  position: relative;
+  overflow: hidden;
 }
 
 .container {
@@ -293,15 +336,14 @@ header {
   justify-content: center;
   gap: 20px;
   border-radius: 20px;
-  margin: 0 30px;
   min-height: 320px;
   position: relative;
   transition: 0.5s;
   padding: 10px 0px;
 }
 .container .catalog .product-grid .card {
-  min-width: 200px;
-  max-width: 200px;
+  max-height: 220px;
+  width: 150px;
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -322,7 +364,7 @@ header {
 .container .catalog .product-grid .card.soldOutCard::after {
   content: "Sold out";
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--primarybgcolor);
@@ -336,12 +378,13 @@ header {
 .container .catalog .product-grid .card img {
   width: 100%;
   display: block;
+  min-height: 150px;
 }
 .container .catalog .product-grid .label {
   position: absolute;
   top: 12px;
   left: 12px;
-  background-color: red;
+  background-color: rgb(0, 87, 138);
   color: white;
   padding: 5px 10px;
   border-radius: 15px;
@@ -350,6 +393,9 @@ header {
 }
 .container .catalog .product-grid .label.new {
   background-color: var(--maincolor);
+}
+.container .catalog .product-grid .label.sale {
+  background-color: darkred;
 }
 .container .catalog .product-grid .favorite {
   position: absolute;
@@ -366,7 +412,7 @@ header {
   color: red;
 }
 .container .catalog .product-grid .product-info {
-  padding: 15px 20px;
+  padding: 15px 5px;
   height: 100%;
 }
 .container .catalog .product-grid .product-title {
@@ -398,20 +444,18 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 25px 20px;
+  padding: 10px;
   transition: 0.5s;
 }
 .container .catalog .product-grid .price {
-  font-size: 18px;
   font-weight: bold;
 }
 .container .catalog .product-grid .lastPrice {
   font-size: 15px;
   text-decoration: line-through;
-  position: relative;
-  left: -50%;
+  position: absolute;
   color: #888;
-  top: 20px;
+  top: 60%;
 }
 .container .catalog .product-grid .add-to-cart {
   width: 100%;
@@ -455,14 +499,17 @@ header {
   padding: 20px;
   width: 300px;
   position: relative;
+  max-height: 95%;
+  overflow-y: scroll;
 }
 .productPreview .previewCard .productImagesContainer .productImage {
   width: 100%;
-  height: 300px;
   overflow: hidden;
-  border-radius: 10px;
+  text-align: center;
 }
 .productPreview .previewCard .productImagesContainer .productImage img {
+  border-radius: 10px;
+  max-width: 160px;
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -474,9 +521,11 @@ header {
 }
 .productPreview .previewCard .productImagesContainer .thumbnailContainer {
   display: flex;
-  justify-content: center;
   gap: 10px;
   margin-top: 10px;
+  overflow-x: scroll;
+  justify-content: start;
+  padding: 10px 0;
 }
 .productPreview .previewCard .productImagesContainer .thumbnailContainer .thumbnail {
   width: 60px;
@@ -516,28 +565,48 @@ header {
 .productPreview .previewCard .productDescription {
   font-size: 14px;
   color: #555;
-  margin-top: 10px;
+  margin: 0;
   text-align: center;
 }
 .productPreview .previewCard .productPrice {
   font-size: 18px;
-  font-weight: bold;
-  color: var(--maincolor);
+  color: #000;
   margin-top: 10px;
-  text-align: center;
+  text-align: left;
+  position: relative;
 }
-.productPreview .previewCard .productPrice::after {
-  content: attr(data-lastPrice);
-  font-size: 14px;
+.productPreview .previewCard .productPrice span {
+  color: var(--maincolor);
+  font-weight: bold;
+}
+.productPreview .previewCard .productPrice oldPrice {
+  color: var(--maincolor);
+  margin-left: 15px;
   text-decoration: line-through;
-  color: #888;
-  margin-left: 10px;
+  text-decoration-color: #000;
+  font-size: 16px;
 }
 .productPreview .previewCard .contc {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
+}
+.productPreview .previewCard .regularOversize {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+  color: #000;
+}
+.productPreview .previewCard .regularOversize .regularSizes {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+.productPreview .previewCard .regularOversize .regularSizes a {
+  color: var(--maincolor);
 }
 .productPreview .previewCard .quantity {
   width: -moz-fit-content;
@@ -561,7 +630,6 @@ header {
 .productPreview .previewCard .productSize {
   width: -moz-fit-content;
   width: fit-content;
-  direction: rtl;
   text-align: right;
   display: flex;
   justify-content: right;
@@ -600,6 +668,21 @@ header {
   background-color: var(--maincolor);
 }
 
+@media only screen and (max-width: 500px) {
+  .container .catalog .product-grid .product-info {
+    padding: 15px 10px;
+  }
+  .container .catalog {
+    padding: 20px 10px;
+  }
+  .container .catalog .product-grid {
+    gap: 5px;
+  }
+  .container .catalog .product-grid .card {
+    max-height: 270px;
+    margin-bottom: 10px;
+  }
+}
 .footer {
   min-height: auto;
   background-color: var(--maincolor);
@@ -613,7 +696,6 @@ header {
 .footer .row.first {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 50px;
   padding: 40px 0;
 }
 .footer .row.first .info {
@@ -626,9 +708,7 @@ header {
   text-align: center;
 }
 .footer .row.first .info .logoContainer img {
-  border-radius: 50%;
   width: 100px;
-  height: 100px;
 }
 .footer .row.first .info .social {
   display: flex;
@@ -661,6 +741,7 @@ header {
 .footer .row.first .fast-links ul li a:hover {
   color: var(--mainFontcolor);
   scale: 1.1;
+  text-decoration: underline;
 }
 .footer .row.first .contact {
   display: grid;
@@ -687,6 +768,11 @@ header {
   align-items: center;
 }
 
+@media (max-width: 768px) {
+  .footer .row.first {
+    gap: 50px;
+  }
+}
 .footer {
   background-color: var(--exstracolor);
 }/*# sourceMappingURL=catalog.css.map */

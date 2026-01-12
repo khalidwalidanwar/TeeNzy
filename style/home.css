@@ -1,4 +1,3 @@
-@charset "UTF-8";
 :root {
   --mainbgcolor: #fff;
   --primarybgcolor: #efeff2;
@@ -14,6 +13,29 @@
   font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 400;
   font-style: normal;
+  scrollbar-width: thin; /* "auto" | "thin" | "none" */
+  scrollbar-color: #198754 #e6e7ea; /* thumb | track */
+}
+
+/* Works in Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 12px; /* scrollbar width */
+  height: 12px; /* scrollbar height (for horizontal) */
+}
+
+::-webkit-scrollbar-track {
+  background: #e6e7ea; /* track background */
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #198754; /* thumb color */
+  border-radius: 8px; /* rounded corners */
+  border: 2px solid #e6e7ea; /* space around thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #146c43; /* darker on hover */
 }
 
 ul {
@@ -45,7 +67,7 @@ body {
   header .info {
     position: absolute;
     top: 11px;
-    left: -100%;
+    right: -100%;
     z-index: 5;
     transition: 0.7s;
   }
@@ -56,12 +78,12 @@ body {
     flex-direction: column;
     position: absolute;
     top: 0;
-    left: -100%;
+    right: -100%;
     padding: 10px 20px;
   }
   header .menu .controle {
     display: block !important;
-    text-align: left;
+    text-align: right;
     width: 100%;
     margin: 5px 0px 20px 0;
   }
@@ -90,13 +112,16 @@ body {
     width: 100%;
     padding: 8px 20px 5px 20px;
     width: 100%;
-    text-align: right;
+    text-align: left;
   }
   header .menu ul li a {
     color: #000;
   }
   header .menu ul li:hover {
     scale: 1.1;
+  }
+  section.trend {
+    padding-top: 48px !important;
   }
 }
 @media only screen and (max-width: 600px) {
@@ -107,6 +132,9 @@ body {
   }
   .endless p {
     text-align: center !important;
+  }
+  #liveAlertPlaceholder {
+    width: 95% !important;
   }
 }
 @media only screen and (max-width: 500px) {
@@ -134,6 +162,19 @@ body {
     top: 30px !important;
   }
 }
+.d-none {
+  display: none !important;
+}
+
+#liveAlertPlaceholder {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 60%;
+  z-index: 999;
+  transition: 0.5s;
+}
+
 .mainOverlay {
   position: fixed;
   top: 0;
@@ -191,7 +232,7 @@ header .logo a h1 span {
   color: var(--exstracolor);
 }
 header .logo img {
-  width: 120px;
+  width: 100px;
 }
 header .links .menuBar {
   display: none;
@@ -310,7 +351,10 @@ section .mainTitle.visible {
 
 section.trend {
   position: relative;
-  height: 100vh;
+  height: 300px;
+  min-height: 380px;
+  padding-top: 63px;
+  background-color: #efeff2;
 }
 section.trend #carouselExampleIndicators {
   height: 100%;
@@ -335,13 +379,23 @@ section.trend .overlay {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3098039216);
   z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-section.trend .overlay button {
-  position: absolute;
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 15px 30px;
+section.trend .overlay .center {
+  margin-bottom: -140px;
+  text-align: center;
+}
+section.trend .overlay .center .text {
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+}
+section.trend .overlay .center .button {
+  padding: 10px 15px;
   font-size: 18px;
   border-radius: 10px;
   border: 2px solid #fff;
@@ -350,7 +404,7 @@ section.trend .overlay button {
   cursor: pointer;
   transition: 0.5s;
 }
-section.trend .overlay button:hover {
+section.trend .overlay .center .button:hover {
   background-color: var(--maincolor);
   border-color: var(--maincolor);
   color: #fff;
@@ -358,48 +412,34 @@ section.trend .overlay button:hover {
 }
 
 section.AI {
+  min-height: unset;
   overflow: hidden;
   position: relative;
-  /* background-image: url(../img/aiBackground.jpg);
-  background-size: cover;
-  background-color: #013a61; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 50px 30px;
+  color: #fff;
+  padding: 30px 0;
+  background-color: #2e2d2d;
+}
+section.AI img {
+  width: 100%;
+  max-height: 100%;
+}
+
+.overlayAiSec {
+  padding: 10px 0;
+  width: 100%;
+  z-index: 1;
+  text-align: center;
+  background-color: #2e2d2d;
   color: #fff;
 }
-section.AI .prompt {
-  margin: 30px 0;
-  min-width: 70%;
-  text-align: center;
-  font-size: 14px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+.overlayAiSec p {
+  padding: 0;
+  margin: 0;
 }
-section.AI .prompt textarea {
-  text-align: right;
-}
-section.AI .prompt p {
-  margin-top: 10px;
-  font-size: 17px;
+.overlayAiSec p a {
+  color: #fff;
   font-weight: bold;
-}
-section.AI .overlay {
-  overflow: hidden;
-}
-section.AI .overlay .ai-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  z-index: -1;
-  filter: brightness(0.5); /* يخلي النص أوضح */
+  text-decoration: underline;
 }
 
 section.collection {
@@ -411,6 +451,9 @@ section.collection {
 }
 section.collection .col-md-6 {
   width: 100%;
+}
+section.collection .col-md-6 a {
+  text-decoration: underline;
 }
 section.collection .row {
   flex-direction: column;
@@ -434,29 +477,51 @@ section.collection .product-grid {
   overflow-x: scroll;
   padding: 10px 0px;
 }
+section.collection .card.soldOutCard {
+  opacity: 0.6;
+  pointer-events: none;
+  filter: grayscale(1);
+  position: relative;
+}
+section.collection .card.soldOutCard::after {
+  content: "Sold out";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--primarybgcolor);
+  color: #000;
+  padding: 10px 20px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+}
 section.collection .card {
-  min-width: 200px;
-  max-width: 200px;
+  min-width: 150px;
+  max-width: 150px;
+  max-height: 270px;
+  width: 150px;
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   position: relative;
   transition: 0.3s ease;
-  overflow: hidden;
 }
 section.collection .card:hover .action {
   bottom: 0;
 }
 section.collection .card img {
   width: 100%;
+  min-height: 200px;
   display: block;
 }
 section.collection .label {
   position: absolute;
   top: 12px;
   left: 12px;
-  background-color: red;
+  background-color: rgb(0, 87, 138);
   color: white;
   padding: 5px 10px;
   border-radius: 15px;
@@ -464,7 +529,10 @@ section.collection .label {
   font-weight: bold;
 }
 section.collection .label.new {
-  background-color: green;
+  background-color: var(--maincolor);
+}
+section.collection .label.sale {
+  background-color: darkred;
 }
 section.collection .favorite {
   position: absolute;
@@ -481,7 +549,7 @@ section.collection .favorite.active {
   color: red;
 }
 section.collection .product-info {
-  padding: 15px 20px;
+  padding: 15px 5px;
   height: 100%;
 }
 section.collection .product-title {
@@ -513,7 +581,7 @@ section.collection .action {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 25px 20px;
+  padding: 10px;
   transition: 0.5s;
 }
 section.collection .price {
@@ -523,10 +591,9 @@ section.collection .price {
 section.collection .lastPrice {
   font-size: 15px;
   text-decoration: line-through;
-  position: relative;
-  left: -50%;
+  position: absolute;
   color: #888;
-  top: 20px;
+  top: 60%;
 }
 section.collection .add-to-cart {
   width: 100%;
@@ -575,6 +642,9 @@ section.analyse .container .row {
   align-items: center;
   flex-direction: column;
 }
+section.analyse .container .row button i {
+  color: #000;
+}
 section.analyse .container .head .mainTitle {
   top: 0 !important;
   opacity: 1 !important;
@@ -584,7 +654,58 @@ section.analyse .container .head p {
   color: #555;
 }
 section.analyse .container .card {
-  text-align: right;
+  text-align: center;
+}
+section.analyse .container .card .stars {
+  margin: 10px 0;
+  color: #ffc107;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+section.analyse .container .card .stars i {
+  color: #555555;
+}
+section.analyse .container .card .stars i.filled {
+  color: #ffc107;
+}
+section.analyse .container .card .card-text {
+  margin: auto;
+  max-width: 340px;
+}
+section.analyse .container .giveStarsOf5 {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  color: #555555;
+}
+section.analyse .container .giveStarsOf5 i {
+  color: #555555;
+  cursor: pointer;
+  transition: 0.3s;
+}
+section.analyse .container .giveStarsOf5 i:hover {
+  scale: 1.2;
+}
+section.analyse .container .giveStarsOf5 i.filled {
+  color: #ffc107;
+}
+section.analyse .container .giveStarsOf5 i:first-child:hover ~ i {
+  color: #555555;
+}
+section.analyse .container .giveStarsOf5 i:nth-child(2):hover ~ i {
+  color: #555555;
+}
+section.analyse .container .giveStarsOf5 i:nth-child(3):hover ~ i {
+  color: #555555;
+}
+section.analyse .container .giveStarsOf5 i:nth-child(4):hover ~ i {
+  color: #555555;
 }
 section.analyse .container .reviews {
   margin-top: 20px;
@@ -599,7 +720,6 @@ section.analyse .container .reviews input {
   border-radius: 10px;
   border: 1px solid #ccc;
   outline: none;
-  text-align: right;
 }
 section.analyse .container .reviews button {
   padding: 10px 20px;
@@ -623,7 +743,7 @@ section.analyse .container .reviews button:hover {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   z-index: 1000;
@@ -634,14 +754,17 @@ section.analyse .container .reviews button:hover {
   padding: 20px;
   width: 300px;
   position: relative;
+  max-height: 95%;
+  overflow-y: scroll;
 }
 .productPreview .previewCard .productImagesContainer .productImage {
   width: 100%;
-  height: 300px;
   overflow: hidden;
-  border-radius: 10px;
+  text-align: center;
 }
 .productPreview .previewCard .productImagesContainer .productImage img {
+  border-radius: 10px;
+  max-width: 160px;
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -652,8 +775,10 @@ section.analyse .container .reviews button:hover {
   transform: scale(1.1);
 }
 .productPreview .previewCard .productImagesContainer .thumbnailContainer {
+  padding: 10px 0;
   display: flex;
-  justify-content: center;
+  overflow-x: scroll;
+  justify-content: start;
   gap: 10px;
   margin-top: 10px;
 }
@@ -695,22 +820,26 @@ section.analyse .container .reviews button:hover {
 .productPreview .previewCard .productDescription {
   font-size: 14px;
   color: #555;
-  margin-top: 10px;
+  margin: 0;
   text-align: center;
 }
 .productPreview .previewCard .productPrice {
   font-size: 18px;
-  font-weight: bold;
   color: var(--maincolor);
   margin-top: 10px;
-  text-align: center;
+  text-align: left;
+  position: relative;
 }
-.productPreview .previewCard .productPrice::after {
-  content: attr(data-lastPrice);
-  font-size: 14px;
+.productPreview .previewCard .productPrice span {
+  color: var(--maincolor);
+  font-weight: bold;
+}
+.productPreview .previewCard .productPrice oldPrice {
+  color: var(--maincolor);
+  margin-left: 15px;
   text-decoration: line-through;
-  color: #888;
-  margin-left: 10px;
+  text-decoration-color: #000;
+  font-size: 16px;
 }
 .productPreview .previewCard .contc {
   display: flex;
@@ -740,7 +869,6 @@ section.analyse .container .reviews button:hover {
 .productPreview .previewCard .productSize {
   width: -moz-fit-content;
   width: fit-content;
-  direction: rtl;
   text-align: right;
   display: flex;
   justify-content: right;
@@ -758,6 +886,22 @@ section.analyse .container .reviews button:hover {
   background-color: var(--maincolor);
   color: #fff;
   border-color: var(--maincolor);
+}
+.productPreview .previewCard .regularOversize {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+  color: #000;
+}
+.productPreview .previewCard .regularOversize .regularSizes {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+.productPreview .previewCard .regularOversize .regularSizes a {
+  color: var(--maincolor);
 }
 .productPreview .previewCard .addToCartBtn {
   width: 100%;
@@ -779,6 +923,21 @@ section.analyse .container .reviews button:hover {
   background-color: var(--maincolor);
 }
 
+@media only screen and (max-width: 500px) {
+  .container .catalog .product-grid .product-info {
+    padding: 15px 10px !important;
+  }
+  .product-grid {
+    margin: 0 10px !important;
+  }
+  .product-grid .card {
+    max-height: 315px !important;
+    margin-bottom: 10px !important;
+  }
+  .product-info .action {
+    padding: 5px !important;
+  }
+}
 .footer {
   min-height: auto;
   background-color: var(--maincolor);
@@ -792,7 +951,6 @@ section.analyse .container .reviews button:hover {
 .footer .row.first {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 50px;
   padding: 40px 0;
 }
 .footer .row.first .info {
@@ -805,9 +963,7 @@ section.analyse .container .reviews button:hover {
   text-align: center;
 }
 .footer .row.first .info .logoContainer img {
-  border-radius: 50%;
   width: 100px;
-  height: 100px;
 }
 .footer .row.first .info .social {
   display: flex;
@@ -840,6 +996,7 @@ section.analyse .container .reviews button:hover {
 .footer .row.first .fast-links ul li a:hover {
   color: var(--mainFontcolor);
   scale: 1.1;
+  text-decoration: underline;
 }
 .footer .row.first .contact {
   display: grid;
@@ -864,4 +1021,10 @@ section.analyse .container .reviews button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: 768px) {
+  .footer .row.first {
+    gap: 50px;
+  }
 }/*# sourceMappingURL=home.css.map */

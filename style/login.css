@@ -13,6 +13,29 @@
   font-family: "IBM Plex Sans Arabic", sans-serif;
   font-weight: 400;
   font-style: normal;
+  scrollbar-width: thin; /* "auto" | "thin" | "none" */
+  scrollbar-color: #198754 #e6e7ea; /* thumb | track */
+}
+
+/* Works in Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 12px; /* scrollbar width */
+  height: 12px; /* scrollbar height (for horizontal) */
+}
+
+::-webkit-scrollbar-track {
+  background: #e6e7ea; /* track background */
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #198754; /* thumb color */
+  border-radius: 8px; /* rounded corners */
+  border: 2px solid #e6e7ea; /* space around thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #146c43; /* darker on hover */
 }
 
 ul {
@@ -44,7 +67,7 @@ body {
   header .info {
     position: absolute;
     top: 11px;
-    left: -100%;
+    right: -100%;
     z-index: 5;
     transition: 0.7s;
   }
@@ -55,12 +78,12 @@ body {
     flex-direction: column;
     position: absolute;
     top: 0;
-    left: -100%;
+    right: -100%;
     padding: 10px 20px;
   }
   header .menu .controle {
     display: block !important;
-    text-align: left;
+    text-align: right;
     width: 100%;
     margin: 5px 0px 20px 0;
   }
@@ -89,13 +112,16 @@ body {
     width: 100%;
     padding: 8px 20px 5px 20px;
     width: 100%;
-    text-align: right;
+    text-align: left;
   }
   header .menu ul li a {
     color: #000;
   }
   header .menu ul li:hover {
     scale: 1.1;
+  }
+  section.trend {
+    padding-top: 48px !important;
   }
 }
 @media only screen and (max-width: 600px) {
@@ -106,6 +132,9 @@ body {
   }
   .endless p {
     text-align: center !important;
+  }
+  #liveAlertPlaceholder {
+    width: 95% !important;
   }
 }
 @media only screen and (max-width: 500px) {
@@ -133,6 +162,19 @@ body {
     top: 30px !important;
   }
 }
+.d-none {
+  display: none !important;
+}
+
+#liveAlertPlaceholder {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 60%;
+  z-index: 999;
+  transition: 0.5s;
+}
+
 .mainOverlay {
   position: fixed;
   top: 0;
@@ -168,10 +210,6 @@ body .container .logo {
   padding-bottom: 10px;
   width: 100%;
   text-align: center;
-  /* img{
-      width: 150px;
-      height: auto;
-  } */
 }
 body .container .logo h1 {
   font-family: "Satisfy", cursive;
@@ -180,6 +218,10 @@ body .container .logo h1 {
 }
 body .container .logo h1 span {
   color: var(--exstracolor);
+}
+body .container .logo img {
+  width: 150px;
+  height: auto;
 }
 body .container .form-container form {
   display: grid;

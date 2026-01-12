@@ -44,7 +44,7 @@ header .logo a h1 span {
   color: var(--exstracolor);
 }
 header .logo img {
-  width: 120px;
+  width: 100px;
 }
 header .links .menuBar {
   display: none;
