@@ -11,10 +11,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-    <title>TeeNzy - Profile</title>
+    <link rel="shortcut icon" href="../../sources/icon.png" type="image/x-icon">
+    <title>TNZY - Profile</title>
 </head>
 <body>
-    <header>
+    <header dir="rtl">
         <div class="info">
           <button class="cart"><i class="fa-solid fa-cart-shopping"></i></button>
         </div>
@@ -22,15 +23,14 @@
             <div class="menuBar"><i class="fa-solid fa-bars"></i></div>
             <div class="menu">
                 <div class="controle"><i class="fa-solid fa-x"></i></div>
-                <ul>
-                    <li class="madeYourT"><a href="../designers/">صمم تيشيرتك</a></li>
-                    <li><a href="../catalog/">كل المنتجات</a></li>
+                <ul dir="ltr">
+                    <li class="madeYourT"><a href="../designs/">Design a T-shirt</a></li>
+                    <li><a href="../catalog/">Catalog</a></li>
                 </ul>
             </div>
         </div>
         <div class="logo"><a href="../../">
-            <h1>Tee<span>N</span>zy</h1>
-            <!-- <img src="./sources/0.png" alt="TeeNzy"> -->
+            <img src="../../sources/logo.png" alt="TNZY">
         </a></div>
     </header>
 
@@ -39,7 +39,10 @@
             <div class="profile-pic">
                 <img src="../../sources/user.png" alt="Profile Picture">
             </div>
-            <div class="user-details">
+            <div class="loading" style="width: 100%;text-align: center;">
+                Loading Details......
+            </div>
+            <div class="user-details d-none">
                 <div class="inputs">
                     <input type="text" class="form-control fName" placeholder="First Name">
                     <input type="text" class="form-control lName" placeholder="Last Name">
@@ -47,27 +50,18 @@
                 <input type="text" disabled class="email" value="">
                 <button class="edit-profile btn btn-success">Save</button>
             </div>
-            <div class="addresses">
+            <div class="addresses d-none">
                 <h3>Addresses</h3>
                 <div class="address-list">
                     <p>No addresses yet.</p>
                 </div>
-                <button class="add-address btn btn-primary">Add New Address</button>
+                <button class="add-address btn btn-primary">New Address</button>
             </div>
             <button class="logout">Logout</button>
         </div>
         <div class="orders" dir="ltr">
             <h3>Order History</h3>
             <div class="order-list">
-                <!-- <div class="order-item">
-                    <div class="orderDetails">
-                        <p class="order-id">Order ID: 123456</p>
-                        <p class="order-date">Date: 2023-10-01</p>
-                        <p class="order-status">Status: Delivered</p>
-                        <p class="order-total">Total: $49.99</p>
-                    </div>
-                    <button class="view-details btn btn-info">View Details</button>
-                </div> -->
                  <p class="noOrders">There is no orders yet.</p>
             </div>
         </div>
@@ -78,6 +72,7 @@
             <div class="controle"><i class="fa-solid fa-x"></i></div>
             <h3>Order Details</h3>
             <div class="orderDetailsContent">
+                <div class="order-items"></div>
                 <!-- Order details will be loaded here -->
             </div>
         </div>
@@ -85,43 +80,44 @@
     <div class="prompt">
         <div class="container">
             <div class="information">
-                <input type="text" class="form-control location" placeholder=" عنزانك بالتفصيل">
-                <input type="number" class="form-control phone" placeholder="رقم الهاتف">
-                <input type="text" class="form-control city" placeholder="المدينة">
+                <input type="text" class="form-control location" placeholder="Location..">
+                <input type="number" class="form-control phone" placeholder="Phone number">
+                <input type="text" class="form-control city" placeholder="City">
                 <select name="governorate" class="form-control country" id="governorate">
-                    <option value="أسوان">أسوان</option>
-                    <option value="أسيوط">أسيوط</option>
-                    <option value="الإسكندرية">الإسكندرية</option>
-                    <option value="الإسماعيلية">الإسماعيلية</option>
-                    <option value="الأقصر">الأقصر</option>
-                    <option value="البحر الأحمر">البحر الأحمر</option>
-                    <option value="البحيرة">البحيرة</option>
-                    <option value="بني سويف">بني سويف</option>
-                    <option value="بورسعيد">بورسعيد</option>
-                    <option value="الجيزة">الجيزة</option>
-                    <option value="الدقهلية">الدقهلية</option>
-                    <option value="دمياط">دمياط</option>
-                    <option value="سوهاج">سوهاج</option>
-                    <option value="الشرقية">الشرقية</option>
-                    <option value="شمال سيناء">شمال سيناء</option>
-                    <option value="الغربية">الغربية</option>
-                    <option value="الفيوم">الفيوم</option>
-                    <option value="القاهرة">القاهرة</option>
-                    <option value="القليوبية">القليوبية</option>
-                    <option value="قنا">قنا</option>
-                    <option value="كفر الشيخ">كفر الشيخ</option>
-                    <option value="المنوفية">المنوفية</option>
-                    <option value="المنيا">المنيا</option>
-                    <option value="مطروح">مطروح</option>
-                    <option value="الوادي الجديد">الوادي الجديد</option>
-                    <option value="السويس">السويس</option>
-                    <option value="جنوب سيناء">جنوب سيناء</option>
+                    <option value="Aswan">Aswan</option>
+                    <option value="Assiut">Assiut</option>
+                    <option value="Alexandria">Alexandria</option>
+                    <option value="Ismailia">Ismailia</option>
+                    <option value="Luxor">Luxor</option>
+                    <option value="Red Sea">Red Sea</option>
+                    <option value="Beheira">Beheira</option>
+                    <option value="Beni Suef">Beni Suef</option>
+                    <option value="Port Said">Port Said</option>
+                    <option value="Giza">Giza</option>
+                    <option value="Dakahlia">Dakahlia</option>
+                    <option value="Damietta">Damietta</option>
+                    <option value="Sohag">Sohag</option>
+                    <option value="Sharqia">Sharqia</option>
+                    <option value="North Sinai">North Sinai</option>
+                    <option value="Gharbia">Gharbia</option>
+                    <option value="Fayoum">Fayoum</option>
+                    <option value="Cairo">Cairo</option>
+                    <option value="Qalyubia">Qalyubia</option>
+                    <option value="Qena">Qena</option>
+                    <option value="Kafr El Sheikh">Kafr El Sheikh</option>
+                    <option value="Menoufia">Menoufia</option>
+                    <option value="Minya">Minya</option>
+                    <option value="Matrouh">Matrouh</option>
+                    <option value="New Valley">New Valley</option>
+                    <option value="Suez">Suez</option>
+                    <option value="South Sinai">South Sinai</option>
                 </select>
             </div>
-            <button class="btn btn-success submit">حفظ</button>
+            <button class="btn btn-success submit">Save</button>
         </div>
     </div>
     <div class="mainOverlay"></div>
+    <div id="liveAlertPlaceholder"></div>
     <script type="module" src="../../script/profile.js"></script>
 </body>
 </html>
