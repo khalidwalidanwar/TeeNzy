@@ -1,0 +1,4 @@
+/vendor/
+firebase-key.json
+.env
+.DS_Store
