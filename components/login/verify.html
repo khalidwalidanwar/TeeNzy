@@ -11,29 +11,28 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-    <title>TeeNzy - Verify</title>
+    <link rel="shortcut icon" href="../../sources/icon.png" type="image/x-icon">
+    <title>TNZY - Verify</title>
 </head>
 <body>
-
-    <div class="container" dir="rtl">
+    <div class="container">
         <div class="logo">
-            <h1>Tee<span>N</span>zy</h1>
-            <!-- <img src="./sources/0.png" alt="TeeNzy"> -->
+            <img src="../../sources/logo.png" alt="TNZY">
         </div>
         <div class="form-container">
             <form id="verifyForm" method="post" action="#">
                 <div >
-                    <h2>أدخل الرمز</h2>
-                    <label for="text" class="form-label">أدخل رمز التحقق المرسل الي <span></span></label>
+                    <h2>Enter code</h2>
+                    <label for="text" class="form-label">Enter the code sent to <span></span></label>
                 </div>
-                <input type="text" class="form-control mb-3" id="code" placeholder="رمز التحقق" required>
-                <button type="submit" class="btn btn-success w-100">تأكيد</button>
+                <input type="text" class="form-control mb-3" id="code" placeholder="Code" required>
+                <button type="submit" class="btn btn-success w-100">Submit</button>
             </form>
         </div>
     </div>
-
+    <div id="liveAlertPlaceholder"></div>
     <script type="module">
-        import {getCookie, setCookie, eraseCookie} from '../../script/main.js';
+        import {getCookie, setCookie, eraseCookie,appendAlert} from '../../script/main.js';
         import {app, db, collection, getDocs, addDoc, query,limit,where ,deleteDoc,doc,updateDoc,getDoc} from '../../script/app.js';
         if(getCookie("userId") && !getCookie('isVerified')){
             document.querySelector('#verifyForm label span').innerText = getCookie('emailToVirify');
@@ -44,48 +43,76 @@
                 window.location.href = './';
             }
         }
+        document.querySelector("input#code").focus();
         document.getElementById('verifyForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const code = document.getElementById('code').value;
+            document.querySelector("button").setAttribute("disabled","");
             const userId = getCookie("userId");
-            getDoc(doc(db, "users", userId)).then((userDoc) => {
-                if (userDoc.exists()) {
-                    const userData = userDoc.data();
-                    if(userData.verificationCode === code){
-                        const codeGenerationTime = userData.createdAt.toDate();
-                        const currentTime = new Date();
-                        const timeDifference = (currentTime - codeGenerationTime) / (1000 * 60); // in minutes
-                        if (timeDifference <= 15) {
-                            // Code is valid
-                            var userAddresses = userData.addresses || {};
-                            updateDoc(doc(db, "users", userId), {
-                                verificationCode: "",
-                                isVerified: true,
-                                addresses:userAddresses,
-                            }).then(() => {
+            fetch('../../php/proxy.php?col=users').then(res=>res.json()).then(((res)=>{
+                res.forEach(user => {
+                    if(user.id == userId){
+                        const userData = user;
+                        if(userData.verificationCode == code){
+                            const codeGenerationTime = new Date(userData.createdAt);
+                            const currentTime = new Date();
+                            const timeDifference = (currentTime - codeGenerationTime) / (1000 * 60); // in minutes
+                            if (timeDifference <= 15) {
+                                // Code is valid
+                                var userAddresses = userData.addresses || {};
+                                updateUser(userId,{
+                                    verificationCode: "",
+                                    isVerified: true,
+                                    addresses:userAddresses,
+                                }).then(() => {
+                                    eraseCookie("emailToVirify");
+                                    setCookie('isVerified', 'true', 60*24*365); // 1 year
+                                    appendAlert('Verification successful! You are being redirected to the home page.','success');
+                                    window.location.href = '../../';
+                                }).catch((error) => {
+                                    console.error("Error updating document: ", error);
+                                });
+                            } else {
+                                appendAlert('Your verification code has expired. Please request a new one.','warning');
+                                eraseCookie("userId");
                                 eraseCookie("emailToVirify");
-                                setCookie('isVerified', 'true', 60*24*365); // 1 year
-                                alert('تم التحقق بنجاح! جاري تحويلك إلى الصفحة الرئيسية.');
-                                window.location.href = '../../';
-                            }).catch((error) => {
-                                console.error("Error updating document: ", error);
-                            });
+                                setTimeout(() => {
+                                    window.location.href = './';
+                                }, 5000);
+                            }
                         } else {
-                            alert('انتهت صلاحية رمز التحقق. يرجى طلب رمز جديد.');
+                            document.querySelector("button").removeAttribute("disabled")
+                            appendAlert('Invalid verification code. Please try again.','warning');
                         }
-                    } else {
-                        alert('رمز التحقق غير صحيح. يرجى المحاولة مرة أخرى.');
                     }
-                } else {
-                    alert('المستخدم غير موجود. يرجى تسجيل الدخول مرة أخرى.');
-                    eraseCookie("userId");
-                    eraseCookie("emailToVirify");
-                    window.location.href = './';
-                }
-            }).catch((error) => {
-                console.error("Error getting document: ", error);
-            });
+                });
+                
+            }))
         });
+
+
+async function updateUser(userId, updatedData) {
+    try {
+    const response = await fetch(`../../php/proxy.php?col=users&id=${userId}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedData)
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+        console.log("✅ تم التعديل بنجاح:");
+    } else {
+        console.error("❌ فشل التعديل:", result);
+    }
+    } catch (error) {
+    console.error("🌐 خطأ في الاتصال بالسيرفر:", error);
+    appendAlert("There is an error, Please try again later!");
+    }
+}
     </script>
 </body>
 </html>
