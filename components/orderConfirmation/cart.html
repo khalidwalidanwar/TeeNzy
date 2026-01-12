@@ -17,10 +17,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-    <title>TeeNzy - cart</title>
+    <link rel="shortcut icon" href="../../sources/icon.png" type="image/x-icon">
+    <title>TNZY - cart</title>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init({
+            publicKey: "F4aSC97Sgv-BtQApI",
+        });
+    })();
+    </script>
 </head>
 <body>
-    <header>
+    <header dir="rtl">
         <div class="info">
           <button class="userProfile"><i class="fa-solid fa-user"></i></button>
         </div>
@@ -28,88 +39,89 @@
             <div class="menuBar"><i class="fa-solid fa-bars"></i></div>
             <div class="menu">
                 <div class="controle"><i class="fa-solid fa-x"></i></div>
-                <ul>
-                    <li class="madeYourT"><a href="../designers">صمم تيشيرتك</a></li>
-                    <li><a href="../catalog/">كل المنتجات</a></li>
-                    <li><a href="../../index.html#analyse">أراء العملاء</a></li>
-                    <li><a href="../../index.html#footer">تواصل معنا</a></li>
+                <ul dir="ltr">
+                    <li class="madeYourT"><a href="../designs">Design a T-shirt</a></li>
+                    <li><a href="../catalog/">catalog</a></li>
+                    <li><a href="../../index.html#analyse">Reviews</a></li>
+                    <li><a href="../../index.html#footer">Contact Us</a></li>
                 </ul>
             </div>
         </div>
         <div class="logo"><a href="../../">
-            <h1>Tee<span>N</span>zy</h1>
-            <!-- <img src="./sources/logo.png" alt="TeeNzy"> -->
+            <img src="../../sources/logo.png" alt="TNZY">
         </a></div>
     </header>
 
 
-    <div class="container cartContainer">
+    <div class="container cartContainer" dir="rtl">
         <div class="left">
           <div class="order-summarise">
-            <h2 class="summary-title">ملخص الطلب</h2>
-            <p>الرجاء مراجعة تفاصيل طلبك قبل المتابعة إلى الدفع.</p>
+            <h2 class="summary-title">Order summary</h2>
+            <p dir="ltr">Please review your order details before proceeding to checkout.</p>
             <ul class="summary-details">
-              <li>المنتجات: <span class="totalOfProducts"> <span>ج.م</span></span> </li>
-              <li>الشحن و التوصيل: <span class="deliveryFees"> <span>ج.م</span></span> </li>
-              <li>الاجمالي: <span class="subTotalPrice"> <span>ج.م</span></span> </li>
-              <li class="discount">الخصم: <span class="taxes">----<span>ج.م</span></span> </li>
-              <li class="totalPriceLi">احمالي الطلب: <span class="totalPriceValue"></span> ج.م</li>
+              <li>Products total: <span class="totalOfProducts"> <span>EGP</span></span> </li>
+              <li> Delivery : <span class="deliveryFees"> <span>EGP</span></span> </li>
+              <li>Total: <span class="subTotalPrice"> <span>EGP</span></span> </li>
+              <li class="discount d-none">Discount: <span class="taxes">----<span>EGP</span></span> </li>
+              <li class="totalPriceLi">Subtotal: <span class="totalPriceValue"></span> EGP</li>
             </ul>
             <div class="discountCobone">
-              <input type="text" class="form-control" placeholder="كود الخصم">
-              <button class="btn btn-success applyBtn">تطبيق</button>
+              <input type="text" class="form-control" placeholder="Discount code">
+              <button class="btn btn-success applyBtn">Apply</button>
             </div>
-            <button class="btn btn-success payment-btn">الذهاب للدفع</button>
-            <button class="btn btn-success checkout-btn d-none">تأكيد الطلب</button>
+            <div class="loading" style="direction: ltr;margin: 5px auto;">Loading.....</div>
+            <button class="btn btn-success payment-btn d-none">Checkout</button>
+            <button class="btn btn-success checkout-btn d-none">Confirm Order</button>
             <p class="policy">
-              من خلال النقر على "الذهاب للدفع" أو "تأكيد الطلب"، فإنك توافق على <a href="../policy/policy.html">سياسة الخصوصية</a> و <a href="../policy/refunInfo.html">سياسة الاستبدال و الاسترجاع</a> و <a href="../policy/shippingInfo.html">خدمة التوصيل</a> الخاصة بنا.
+              <!-- من خلال النقر على "Checkout" أو "Confirm Order"، فإنك توافق على <a href="../policy/policy.html">سياسة الخصوصية</a> و <a href="../policy/refunInfo.html">سياسة الاستبدال و الاسترجاع</a> و <a href="../policy/shippingInfo.html">خدمة التوصيل</a> الخاصة بنا. -->
+              By clicking "Checkout" or "Confirm Order", you agree to our <a href="../policy/policy.html">Privacy Policy</a>, <a href="../policy/refunInfo.html">Exchange and Return Policy</a>, and <a href="../policy/shippingInfo.html">Shipping Service</a>.
             </p>
           </div>
         </div>
         <div class="right">
           <div class="userInfo">
-            <h2>معلومات التوصيل</h2>
+            <h2>Delivery information</h2>
             <div class="username"></div>
             <div class="email"></div>
             <div class="deliveryInfo">
               <div class="chooseLocation">
-                <p>عنوان التوصيل</p>
+                <p>Delivery address : </p>
                 <select class="form-contrrol">
                 </select>
               </div>
               <div class="locationInfo">
-                <p> العنوان : <span class="loc"></span></p>
-                <p>رقم الهاتف : <span class="num"></span></p>
+                <p style="max-width: 200px;"> Address : <span class="loc"></span></p>
+                <p>Phone : <span class="num"></span></p>
               </div>
             </div>
           </div>
           <div class="orderInfo">
-            <h2>مراجعة الطلب</h2>
+            <h2>Review your order</h2>
             <div class="products">
             </div>
           </div>
           <div class="paymentMethods d-none">
-            <h2>طرق الدفع</h2>
+            <h2>Payment methods</h2>
             <div class="methods">
               <div class="method active">
                 <input type="radio" name="paymentMethod" id="onDelivery" checked>
                 <i class="fa-solid fa-hand-holding-dollar"></i>
-                <label for="onDelivery">الدفع عند الاستلام</label>
+                <label for="onDelivery">Cash on delivery</label>
               </div>
               <div class="method disabled">
                 <input type="radio" name="paymentMethod" id="fawry" disabled>
                 <img src="../../sources/fawrypay.png" alt="payment methods">
-                <label for="fawry">الدفع عبر فوري</label>
+                <label for="fawry">FawryPay</label>
               </div>
               <div class="method">
                 <input type="radio" name="paymentMethod" id="vodafoneCash">
                 <img src="../../sources/vfcash.png" alt="payment methods">
-                <label for="vodafoneCash">الدفع عبر فودافون كاش</label>
+                <label for="vodafoneCash">vodafoneCash</label>
                 <div class="payment-details">
-                  <p>رقم فودافون كاش: 01027467022</p>
-                  <p>الاسم: خالد وليد</p>
+                  <p>رقم فودافون كاش: 01019023299</p>
+                  <p>الاسم: نوهير ا*****</p>
                   <p>بعد الدفع، يرجى إرسال صورة الإيصال إلى رقم الواتساب التالي لتأكيد الدفع:</p>
-                  <a href="https://www.wa.me/+201027467022" target="_blank">اتصل بنا على واتساب</a>
+                  <a href="https://wa.me/+201019023299" target="_blank">اتصل بنا على واتساب</a>
                 </div>
               </div>
             </div>
@@ -119,48 +131,47 @@
     </div>
 
 
-    <section class="footer">
+     <section class="footer">
       <div class="container" id="footer">
-        <div dir="rtl" class="row first">
+        <div class="row first">
           <div class=" info">
             <div class="logoContainer">
-              <img src="../../sources/logo.png" alt="">
+              <img src="../../sources/logo2.png" alt="">
             </div>
             <div class="aboutUs">
-              <p dir="rtl">TeeNzy هو متجر إلكتروني متخصص في بيع التيشيرتات والملابس المخصصة. نحن نقدم لك فرصة لتصميم تيشيرتك الخاص باستخدام تقنيات الذكاء الاصطناعي المتقدمة. سواء كنت تبحث عن تيشيرت بسيط أو تصميم فريد يعكس شخصيتك، نحن هنا لتحقيق ذلك.</p>
+              <p><span style="font-weight: bold;">TNZY</span> is an online store specializing in custom T-shirts and clothing. We offer you the opportunity to design your own T-shirt using advanced artificial intelligence technologies. Whether you're looking for a simple T-shirt or a unique design that reflects your personality, we're here to make it happen.</p>
             </div>
             <div class="social">
-            <a href="https://www.facebook.com/profile.php?id=61578806815180"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://www.instagram.com/teenzy_store?igsh=NHdsdDdpMzd6eXR1"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@teenzy73?_t=ZS-8zeuAbljmj3&_r=1 "><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://www.wa.me/+201061193251 "><i class="fa-brands fa-whatsapp"></i></a>
+            <a target="_blank" href="https://www.facebook.com/share/1AH6yrwif7/"><i class="fa-brands fa-facebook"></i></a>
+            <a target="_blank" href="https://www.instagram.com/tnzy2026?igsh=MWI4ejk5b2Z5NTk3NQ=="><i class="fa-brands fa-instagram"></i></a>
+            <a target="_blank" href="https://www.tiktok.com/@tnzy2026?_r=1&_t=ZS-92wxRcHZYfd"><i class="fa-brands fa-tiktok"></i></a>
+            <a target="_blank" href="https://wa.me/+201019023299 "><i class="fa-brands fa-whatsapp"></i></a>
             </div>
           </div>
           <div class=" fast-links">
-            <h3>روابط سريعة</h3>
+            <h3>Quick Links</h3>
             <ul>
-              <li><a href="../designers/">صمم تيشيرتك</a></li>
-              <li><a href="../catalog/">كل المنتجات</a></li>
-              <li><a href="../../index.html#analyse">أراء العملاء</a></li>
-              <li><a href="../policy/shippingInfo.html">خدمة التوصيل</a></li>
-              <li><a href="../policy/refunInfo.html">سياسة الاستبدال و الاسترجاع</a></li>
-              <li><a href="../policy/policy.html">سياسة الخصوصية</a></li>
+              <li><a href="../designs/">Design a T-shirt</a></li>
+              <li><a href="../../index.html#analyse">Customer Reviews</a></li>
+              <li><a href="../policy/shippingInfo.html">Shipping Service</a></li>
+              <li><a href="../policy/refunInfo.html">Exchange and Return Policy</a></li>
+              <li><a href="../policy/policy.html">Privacy policy</a></li>
               </ul>
             </div>
           <div class=" contact">
-            <h3>تواصل معنا</h3>
+            <h3>Contact Us</h3>
             <div class="contact-item">
-              <p>الهاتف: 01061193251</p>
-              <p>البريد الإلكتروني: <a style="color: #fff;" href="mail:teenzy8080@gmail.com">teenzy8080@gmail.com</a> </p>
+              <p>Phone: 01019023299</p>
+              <p>Email: <a style="color: #fff;" href="mailto:teenzy2525@gmail.com">teenzy2525@gmail.com</a> </p>
             </div>
             </div>
         </div>
         <div dir="rtl" class="row endless">
           <div class="col-10 text-end">
-            <p dir="ltr">&copy; 2025 TeeNzy. جميع الحقوق محفوظة.</p>
+            <p dir="ltr">&copy; 2026 All rights reserved for TNZY.</p>
           </div>
           <div class="col-2 text-center">
-            <img src="https://www.fawry.com/wp-content/uploads/2022/07/Fawry-English-Horizontal-1536x481.png" alt="Fawrypay" width="100px">
+            <img src="../../sources/vfcash.png" alt="Vodafone Cash" width="50px">
           </div>
         </div>
       </div>
@@ -169,6 +180,7 @@
 
 
     <div class="mainOverlay"></div>
+    <div id="liveAlertPlaceholder"></div>
 
     <script type="module" src="../../script/cart.js"></script>
 </body>
